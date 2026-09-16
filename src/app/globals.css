@@ -1,0 +1,564 @@
+/* ─────────────────────────────────────────────────────────────
+   GLOBAL STYLES — Rahul Kumar Sah Portfolio
+   Design system: Purple accent · White/Neutral bg · Inter font
+   ───────────────────────────────────────────────────────────── */
+
+@import "tailwindcss";
+
+/* ── Design Tokens ──────────────────────────────────────────── */
+:root {
+  /* Purple palette */
+  --purple-50: #faf5ff;
+  --purple-100: #f3e8ff;
+  --purple-200: #e9d5ff;
+  --purple-300: #d8b4fe;
+  --purple-400: #c084fc;
+  --purple-500: #a855f7;
+  --purple-600: #9333ea;
+  --purple-700: #7e22ce;
+  --purple-800: #6b21a8;
+  --purple-900: #581c87;
+
+  /* Neutral palette */
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e8e8e8;
+  --neutral-300: #d1d5db;
+  --neutral-400: #9ca3af;
+  --neutral-500: #6b7280;
+  --neutral-600: #4b5563;
+  --neutral-700: #374151;
+  --neutral-800: #1f2937;
+  --neutral-900: #111827;
+
+  /* Semantic tokens */
+  --color-primary: var(--purple-600);
+  --color-primary-light: var(--purple-400);
+  --color-primary-dark: var(--purple-800);
+  --color-primary-faint: var(--purple-50);
+  --color-primary-subtle: var(--purple-100);
+
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8f7fc;
+  /* very subtle purple-tinted off-white */
+  --color-bg-deep: #f3f1f9;
+  /* slightly deeper for zebra contrast */
+  --color-surface: #ffffff;
+  --color-border: #ece8f5;
+  /* refined border – slightly more visible */
+  --color-border-strong: #ddd6f3;
+
+  --color-text: #111827;
+  --color-text-body: #374151;
+  --color-text-muted: #6b7280;
+  --color-text-subtle: #9ca3af;
+
+  /* Shadows — refined scale */
+  --shadow-xs: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 2px 8px -1px rgb(0 0 0 / 0.07), 0 1px 3px -1px rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 18px -3px rgb(0 0 0 / 0.09), 0 2px 6px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 30px -5px rgb(0 0 0 / 0.1), 0 4px 10px -3px rgb(0 0 0 / 0.06);
+  --shadow-xl: 0 20px 44px -8px rgb(0 0 0 / 0.12), 0 8px 18px -6px rgb(0 0 0 / 0.07);
+  --shadow-purple-sm: 0 4px 14px -2px rgb(147 51 234 / 0.18);
+  --shadow-purple-md: 0 8px 28px -4px rgb(147 51 234 / 0.22);
+  --shadow-purple-lg: 0 16px 44px -8px rgb(147 51 234 / 0.28);
+
+  /* Spacing — section vertical rhythm */
+  --section-py: clamp(4.5rem, 7vw, 6.5rem);
+  --section-gap: clamp(2.5rem, 4vw, 4rem);
+  --card-gap: 1.75rem;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 22px;
+  --radius-3xl: 28px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 380ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 480ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Tailwind v4 theme extension ────────────────────────────── */
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #9333ea;
+  --color-primary-light: #c084fc;
+  --color-primary-dark: #6b21a8;
+  --color-primary-faint: #faf5ff;
+  --color-primary-subtle: #f3e8ff;
+  --color-surface: #ffffff;
+  --color-border-subtle: #ece8f5;
+  --color-muted: #6b7280;
+
+  --animate-fade-up: fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.45s ease forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animate-spin-slow: spin-slow 12s linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: -200% center;
+    }
+
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* ── Base Reset ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  /* offset for sticky navbar */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+/* ── Typography Scale ───────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4.25rem);
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+}
+
+h4 {
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+}
+
+p {
+  line-height: 1.72;
+  color: var(--color-text-body);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--purple-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-500);
+}
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background-color: var(--purple-200);
+  color: var(--purple-900);
+}
+
+/* ── Focus Ring ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Responsive container */
+.container-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+/* Section vertical padding */
+.section-py {
+  padding-block: var(--section-py);
+}
+
+/* Section top separator line */
+.section-divider {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Section background alternation */
+.bg-section-white {
+  background-color: #ffffff;
+}
+
+.bg-section-alt {
+  background-color: var(--color-bg-alt);
+}
+
+.bg-section-deep {
+  background-color: var(--color-bg-deep);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+.card-base {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.card-base:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--purple-300);
+}
+
+.card-elevated {
+  box-shadow: var(--shadow-sm);
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--purple-300);
+  transform: translateY(-4px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BADGE / TAG STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+.badge-purple {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--purple-100);
+  color: var(--purple-700);
+  border: 1px solid var(--purple-200);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+.badge-neutral {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--neutral-100);
+  color: var(--neutral-700);
+  border: 1px solid var(--neutral-200);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GRADIENT & VISUAL EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-400) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer gradient text */
+.gradient-text-shimmer {
+  background: linear-gradient(90deg,
+      var(--purple-700) 0%,
+      var(--purple-400) 40%,
+      var(--purple-600) 60%,
+      var(--purple-800) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Purple orb / blob */
+.orb {
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+/* Subtle grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Dotted background */
+.dot-bg {
+  background-image: radial-gradient(circle, var(--purple-200) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Purple left accent stripe (for experience/timeline cards) */
+.accent-stripe {
+  position: relative;
+  overflow: hidden;
+}
+
+.accent-stripe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--purple-600), var(--purple-400));
+  border-radius: 0 4px 4px 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATION HELPERS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Fade-up */
+.animate-fade-up {
+  opacity: 0;
+  animation: fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Fade-in */
+.animate-fade-in {
+  opacity: 0;
+  animation: fade-in 0.45s ease forwards;
+}
+
+/* Stagger delays */
+.delay-75 {
+  animation-delay: 75ms;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-150 {
+  animation-delay: 150ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-600 {
+  animation-delay: 600ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+.delay-800 {
+  animation-delay: 800ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INTERACTIVE UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hover lift */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Purple glow */
+.purple-glow {
+  box-shadow: var(--shadow-purple-sm);
+}
+
+.purple-glow:hover {
+  box-shadow: var(--shadow-purple-md);
+}
+
+/* Smooth link underline */
+.link-purple {
+  color: var(--purple-600);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.link-purple:hover {
+  color: var(--purple-800);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION HEADER UNDERLINE ACCENT
+   ═══════════════════════════════════════════════════════════════ */
+
+.section-underline {
+  display: inline-block;
+  width: 3rem;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--purple-600), var(--purple-400));
+  margin-top: 0.75rem;
+}
