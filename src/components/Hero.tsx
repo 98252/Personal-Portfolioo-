@@ -75,7 +75,7 @@ export default function Hero() {
   return (
     <section
       id='hero'
-      className='relative min-h-[92vh] flex items-center overflow-hidden pt-20 pb-12'
+      className='relative min-h-[92vh] flex items-center overflow-hidden pt-28 sm:pt-24 md:pt-20 pb-12'
       aria-label='Hero section'
     >
       {/* ── Background decorations ── */}
@@ -113,9 +113,9 @@ export default function Hero() {
       </div>
 
       <div className='container-fluid relative z-10'>
-        <div className='grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-14 items-center'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center'>
           {/* ────────── LEFT COLUMN — Text (7 cols) ────────── */}
-          <div className='lg:col-span-7 flex flex-col gap-6 order-2 lg:order-1'>
+          <div className='lg:col-span-7 flex flex-col gap-5 sm:gap-6 order-2 lg:order-1'>
             {/* Availability & Scholarship Pill */}
             <div className='flex flex-wrap items-center gap-2.5 animate-fade-up'>
               <span className='inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] text-xs sm:text-sm font-medium'>
@@ -134,7 +134,7 @@ export default function Hero() {
 
             {/* Main headline */}
             <div className='animate-fade-up' style={{ animationDelay: "80ms" }}>
-              <h1 className='font-extrabold text-[#111827] text-4xl sm:text-5xl lg:text-6xl leading-[1.12] tracking-tight'>
+              <h1 className='font-extrabold text-[#111827] text-3xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight'>
                 Hi, I&apos;m{" "}
                 <span
                   className='bg-gradient-to-r from-[#9333ea] via-[#a855f7] to-[#c084fc] bg-clip-text text-transparent'
@@ -146,7 +146,7 @@ export default function Hero() {
                   {personalInfo.name}
                 </span>
               </h1>
-              <p className='mt-3 text-lg sm:text-xl font-medium text-[#6b21a8]'>
+              <p className='mt-3 text-base sm:text-xl font-medium text-primary-dark'>
                 {personalInfo.title} | {personalInfo.subtitle}
               </p>
             </div>
