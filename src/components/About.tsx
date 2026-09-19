@@ -49,35 +49,35 @@ export default function About() {
           <div className="lg:col-span-7 flex flex-col gap-6">
             <Card
               padding="none"
-              className="w-full border border-[#ece8f5] bg-white shadow-sm hover:shadow-md transition-all duration-300 p-8 sm:p-10 lg:p-12 rounded-3xl text-center"
+              className="w-full border border-[#ece8f5] bg-white dark:bg-[#131c31] dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 p-8 sm:p-10 lg:p-12 rounded-3xl text-center"
             >
-              <h3 className="text-xl sm:text-2xl font-bold text-[#111827] flex items-center justify-center gap-3 text-center">
-                <span className="w-2.5 h-6 rounded-full bg-gradient-to-b from-[#9333ea] to-[#c084fc]" />
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center justify-center gap-3 text-center">
+                <span className="w-2 h-5 rounded-full bg-slate-800 dark:bg-slate-300" />
                 Profile Summary
               </h3>
 
-              <p className="mt-5 text-[#374151] text-base sm:text-lg lg:text-xl leading-relaxed text-center">
+              <p className="mt-5 text-slate-700 dark:text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed text-center">
                 {personalInfo.summary}
               </p>
 
-              <div className="mt-8 pt-6 border-t border-[#ece8f5] grid grid-cols-1 sm:grid-cols-2 gap-5 text-center">
+              <div className="mt-8 pt-6 border-t border-[#ece8f5] dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-5 text-center">
                 <div className="space-y-1 text-center">
-                  <span className="text-[#9ca3af] block text-xs uppercase tracking-widest font-bold">Location</span>
-                  <span className="font-semibold text-[#111827] text-base block">{personalInfo.location}</span>
+                  <span className="text-slate-400 dark:text-slate-400 block text-xs uppercase tracking-widest font-bold">Location</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-base block">{personalInfo.location}</span>
                 </div>
                 <div className="space-y-1 text-center">
-                  <span className="text-[#9ca3af] block text-xs uppercase tracking-widest font-bold">Degree</span>
-                  <span className="font-semibold text-[#111827] text-base block">B.Tech CSE · 2023–Present</span>
+                  <span className="text-slate-400 dark:text-slate-400 block text-xs uppercase tracking-widest font-bold">Degree</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-base block">B.Tech CSE · 2023–Present</span>
                 </div>
                 <div className="space-y-1 text-center">
-                  <span className="text-[#9ca3af] block text-xs uppercase tracking-widest font-bold">Email</span>
-                  <a href={`mailto:${personalInfo.email}`} className="font-semibold text-[#9333ea] hover:underline text-base block">
+                  <span className="text-slate-400 dark:text-slate-400 block text-xs uppercase tracking-widest font-bold">Email</span>
+                  <a href={`mailto:${personalInfo.email}`} className="font-semibold text-slate-900 dark:text-white hover:text-slate-700 dark:hover:text-slate-300 hover:underline text-base block">
                     {personalInfo.email}
                   </a>
                 </div>
                 <div className="space-y-1 text-center">
-                  <span className="text-[#9ca3af] block text-xs uppercase tracking-widest font-bold">Portfolio</span>
-                  <a href={personalInfo.website} target="_blank" rel="noreferrer" className="font-semibold text-[#9333ea] hover:underline text-base block">
+                  <span className="text-slate-400 dark:text-slate-400 block text-xs uppercase tracking-widest font-bold">Portfolio</span>
+                  <a href={personalInfo.website} target="_blank" rel="noreferrer" className="font-semibold text-slate-900 dark:text-white hover:text-slate-700 dark:hover:text-slate-300 hover:underline text-base block">
                     rahulks.com.np ↗
                   </a>
                 </div>
@@ -91,19 +91,19 @@ export default function About() {
               <Card
                 key={idx}
                 padding="none"
-                className="w-full flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 sm:gap-5 border border-[#ece8f5] bg-white hover:-translate-y-1 hover:shadow-md hover:border-[#c084fc] transition-all duration-250 p-6 rounded-2xl text-center sm:text-left"
+                className="w-full flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 sm:gap-5 border border-slate-200 bg-white dark:bg-[#131c31] dark:border-slate-800 dark:hover:border-slate-700 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 transition-all duration-250 p-6 rounded-2xl text-center sm:text-left"
               >
-                <div className="w-13 h-13 rounded-2xl bg-[#faf5ff] border border-[#e9d5ff] flex items-center justify-center text-2xl shrink-0 shadow-2xs">
+                <div className="w-13 h-13 rounded-2xl bg-slate-100 border border-slate-200 dark:bg-slate-800/80 dark:border-slate-700 flex items-center justify-center text-2xl shrink-0 shadow-2xs">
                   {item.icon}
                 </div>
                 <div className="min-w-0">
-                  <span className="text-xs font-bold tracking-widest uppercase text-[#9333ea] block">
+                  <span className="text-xs font-bold tracking-widest uppercase text-slate-500 dark:text-slate-400 block">
                     {item.label}
                   </span>
-                  <h4 className="text-base sm:text-lg font-bold text-[#111827] mt-0.5 leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-0.5 leading-snug">
                     {item.title}
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#6b7280] mt-0.5 leading-snug">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-0.5 leading-snug">
                     {item.subtitle}
                   </p>
                 </div>

@@ -25,30 +25,30 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card
       padding="none"
-      className="w-full border border-[#ece8f5] bg-white hover:-translate-y-2 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 rounded-2xl"
+      className="w-full border border-slate-200 bg-white dark:bg-[#131c31] dark:border-slate-800 dark:hover:border-slate-700 hover:-translate-y-1.5 hover:shadow-md hover:border-slate-300 transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 rounded-2xl"
     >
       <div>
         {/* Header: Category & Date */}
         <div className="flex items-center justify-between gap-2 mb-3.5">
           {project.category && (
-            <span className="px-3 py-1 rounded-full bg-[#f3e8ff] text-[#7e22ce] text-xs font-semibold border border-[#e9d5ff]">
+            <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-700">
               {project.category}
             </span>
           )}
-          <span className="text-xs font-semibold text-[#9ca3af]">
+          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
             {project.period}
           </span>
         </div>
 
         {/* Title */}
-        <h3 className="text-xl sm:text-2xl font-bold text-[#111827] hover:text-[#9333ea] transition-colors leading-snug">
+        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white hover:text-slate-700 dark:hover:text-slate-200 transition-colors leading-snug">
           {project.title}
         </h3>
 
         {/* Tech Stack tags */}
         <div className="flex flex-wrap gap-2 my-4">
           {project.techStack.map((tech) => (
-            <Badge key={tech} variant="purple" size="sm">
+            <Badge key={tech} variant="neutral" size="sm">
               {tech}
             </Badge>
           ))}
@@ -57,8 +57,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* Bullet Points */}
         <ul className="space-y-2.5 my-5">
           {project.points.map((pt, i) => (
-            <li key={i} className="flex items-start gap-2.5 text-[#4b5563] text-sm leading-relaxed">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9333ea] mt-2 flex-shrink-0" />
+            <li key={i} className="flex items-start gap-2.5 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-500 mt-2 flex-shrink-0" />
               <span>{pt}</span>
             </li>
           ))}
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Footer: Action links */}
-      <div className="pt-5 border-t border-[#ece8f5] flex flex-wrap items-center justify-between gap-3">
+      <div className="pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           {project.liveUrl && (
             <Button
@@ -100,7 +100,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {project.liveUrl && (
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/70 px-2.5 py-1 rounded-full">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             Live Deployment
           </span>

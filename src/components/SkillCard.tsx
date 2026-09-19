@@ -21,16 +21,16 @@ export default function SkillCard({ group }: SkillCardProps) {
   return (
     <Card
       padding="none"
-      className="w-full border border-[#ece8f5] bg-white hover:-translate-y-1.5 hover:shadow-lg hover:border-[#c084fc] transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 rounded-2xl"
+      className="w-full border border-slate-200 bg-white dark:bg-[#131c31] dark:border-slate-800 dark:hover:border-slate-700 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 rounded-2xl"
     >
       <div>
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-11 h-11 rounded-xl bg-[#faf5ff] border border-[#e9d5ff] flex items-center justify-center text-xl shadow-xs">
+          <div className="w-11 h-11 rounded-xl bg-slate-100 border border-slate-200 dark:bg-slate-800/80 dark:border-slate-700 flex items-center justify-center text-xl shadow-2xs">
             {icon}
           </div>
           <div>
-            <h3 className="text-lg font-bold text-[#111827]">{group.category}</h3>
-            <span className="text-xs text-[#9333ea] font-semibold">{group.skills.length} skills listed</span>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">{group.category}</h3>
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">{group.skills.length} skills listed</span>
           </div>
         </div>
 
@@ -38,9 +38,9 @@ export default function SkillCard({ group }: SkillCardProps) {
           {group.skills.map((skill) => (
             <Badge
               key={skill}
-              variant="purple"
+              variant="neutral"
               size="md"
-              className="hover:bg-[#9333ea] hover:text-white transition-all cursor-default"
+              className="hover:bg-slate-200 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-100 transition-colors cursor-default"
             >
               {skill}
             </Badge>

@@ -20,33 +20,29 @@ export default function SectionHeader({
   return (
     <div className={`flex flex-col gap-3.5 ${alignClass} ${className}`}>
       {eyebrow && (
-        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f3e8ff] text-[#7e22ce] text-xs font-semibold tracking-wide uppercase border border-[#e9d5ff]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#9333ea] inline-block" />
+        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold tracking-wide uppercase border border-slate-200 dark:border-slate-700">
+          <span className="w-1.5 h-1.5 rounded-full bg-slate-500 dark:bg-slate-400 inline-block" />
           {eyebrow}
         </span>
       )}
 
-      <h2 className="font-extrabold text-[#111827] leading-tight">
+      <h2 className="font-extrabold text-slate-900 dark:text-slate-50 leading-tight">
         {title}{' '}
         {titleHighlight && (
-          <span
-            className="bg-gradient-to-r from-[#9333ea] to-[#c084fc] bg-clip-text text-transparent"
-            style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
-          >
+          <span className="text-slate-900 dark:text-slate-50">
             {titleHighlight}
           </span>
         )}
       </h2>
 
-      {/* Decorative accent underline */}
+      {/* Clean accent underline */}
       <div className={`flex gap-1.5 ${align === 'center' ? 'justify-center' : ''}`}>
-        <span className="h-1 w-10 rounded-full bg-[#9333ea]" />
-        <span className="h-1 w-4 rounded-full bg-[#c084fc]" />
-        <span className="h-1 w-2 rounded-full bg-[#e9d5ff]" />
+        <span className="h-1 w-10 rounded-full bg-slate-800 dark:bg-slate-200" />
+        <span className="h-1 w-3 rounded-full bg-slate-300 dark:bg-slate-600" />
       </div>
 
       {subtitle && (
-        <p className="max-w-3xl text-[#4b5563] text-sm sm:text-base md:text-lg leading-relaxed mt-0.5">
+        <p className="max-w-3xl text-slate-600 dark:text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed mt-0.5">
           {subtitle}
         </p>
       )}

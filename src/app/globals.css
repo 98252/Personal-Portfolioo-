@@ -5,6 +5,8 @@
 
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 /* ── Design Tokens ──────────────────────────────────────────── */
 :root {
   /* Purple palette */
@@ -48,10 +50,10 @@
   /* refined border – slightly more visible */
   --color-border-strong: #ddd6f3;
 
-  --color-text: #111827;
-  --color-text-body: #374151;
-  --color-text-muted: #6b7280;
-  --color-text-subtle: #9ca3af;
+  --color-text: #0f172a;
+  --color-text-body: #334155;
+  --color-text-muted: #64748b;
+  --color-text-subtle: #94a3b8;
 
   /* Shadows — refined scale */
   --shadow-xs: 0 1px 3px 0 rgb(0 0 0 / 0.05);
@@ -82,6 +84,27 @@
   --transition-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 380ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-spring: 480ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Dark Mode Tokens ─────────────────────────────────────────── */
+.dark {
+  --color-bg: #090d16;
+  --color-bg-alt: #0f172a;
+  --color-bg-deep: #0b1120;
+  --color-surface: #131c31;
+  --color-border: #1e293b;
+  --color-border-strong: #334155;
+
+  --color-text: #f8fafc;
+  --color-text-body: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-subtle: #64748b;
+
+  --shadow-xs: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 2px 8px -1px rgb(0 0 0 / 0.5), 0 1px 3px -1px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 18px -3px rgb(0 0 0 / 0.6), 0 2px 6px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 30px -5px rgb(0 0 0 / 0.7), 0 4px 10px -3px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 44px -8px rgb(0 0 0 / 0.8), 0 8px 18px -6px rgb(0 0 0 / 0.6);
 }
 
 /* ── Tailwind v4 theme extension ────────────────────────────── */
@@ -320,7 +343,7 @@ p {
 
 /* Section background alternation */
 .bg-section-white {
-  background-color: #ffffff;
+  background-color: var(--color-bg);
 }
 
 .bg-section-alt {
@@ -371,9 +394,9 @@ p {
   align-items: center;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
-  background: var(--purple-100);
-  color: var(--purple-700);
-  border: 1px solid var(--purple-200);
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #e2e8f0;
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.4;
@@ -385,9 +408,9 @@ p {
   align-items: center;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
-  background: var(--neutral-100);
-  color: var(--neutral-700);
-  border: 1px solid var(--neutral-200);
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.4;
@@ -397,26 +420,14 @@ p {
    GRADIENT & VISUAL EFFECTS
    ═══════════════════════════════════════════════════════════════ */
 
-/* Gradient text */
+/* Simple, professional heading text (replaces gaudy text gradients) */
 .gradient-text {
-  background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-400) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #0f172a;
 }
 
-/* Shimmer gradient text */
+/* Shimmer gradient text - subtle, clean */
 .gradient-text-shimmer {
-  background: linear-gradient(90deg,
-      var(--purple-700) 0%,
-      var(--purple-400) 40%,
-      var(--purple-600) 60%,
-      var(--purple-800) 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
+  color: #0f172a;
 }
 
 /* Purple orb / blob */

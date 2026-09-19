@@ -30,8 +30,8 @@ export default function Card({
     'w-full rounded-2xl border transition-all duration-300';
 
   const bgStyle = glass
-    ? 'bg-white/70 backdrop-blur-md border-white/80'
-    : 'bg-white border-[#ece8f5]';
+    ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border-white/80 dark:border-slate-800/80'
+    : 'bg-white dark:bg-[#131c31] border-slate-200 dark:border-slate-800/90';
 
   const hoverStyle = hover
     ? 'hover:-translate-y-1.5 hover:shadow-[0_12px_32px_-4px_rgb(0_0_0/0.1),0_4px_12px_-4px_rgb(0_0_0/0.06)] cursor-pointer'

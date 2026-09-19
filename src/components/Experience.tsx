@@ -19,40 +19,40 @@ export default function Experience() {
             <Card
               key={exp.id}
               padding="none"
-              className="w-full border border-[#ece8f5] bg-white shadow-sm hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 rounded-3xl overflow-hidden"
+              className="w-full border border-slate-200 bg-white dark:bg-[#131c31] dark:border-slate-800 dark:hover:border-slate-700 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 rounded-3xl overflow-hidden"
             >
-              {/* Top Accent Gradient Bar */}
-              <div className="h-2.5 w-full bg-gradient-to-r from-[#9333ea] via-[#a855f7] to-[#c084fc]" />
+              {/* Top Accent Bar */}
+              <div className="h-2 w-full bg-slate-800 dark:bg-slate-700" />
 
               {/* Main Content with generous padding and center alignment */}
               <div className="py-10 sm:py-12 px-8 sm:px-12 lg:px-16 space-y-8 text-center w-full">
-                <div className="flex flex-col items-center text-center gap-3 pb-6 border-b border-[#ece8f5]">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f3e8ff] text-[#7e22ce] text-xs sm:text-sm font-semibold border border-[#e9d5ff]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#9333ea]" />
+                <div className="flex flex-col items-center text-center gap-3 pb-6 border-b border-slate-200 dark:border-slate-800">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-semibold border border-slate-200 dark:border-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
                     Internship
                   </div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] leading-tight">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
                     {exp.role}
                   </h3>
-                  <p className="text-lg sm:text-xl font-semibold text-[#9333ea]">
+                  <p className="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-300">
                     {exp.company}
                   </p>
                   <div className="mt-1">
-                    <span className="inline-block px-4 py-1.5 rounded-xl bg-[#faf5ff] border border-[#e9d5ff] text-[#6b21a8] text-sm font-semibold shadow-2xs">
+                    <span className="inline-block px-4 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium">
                       📅 {exp.period}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex flex-col items-center">
-                  <h4 className="text-xs sm:text-sm font-bold text-[#7e22ce] uppercase tracking-wider mb-5 flex items-center justify-center gap-2 text-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#9333ea]" />
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-5 flex items-center justify-center gap-2 text-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-500" />
                     Key Contributions & Responsibilities
                   </h4>
                   <ul className="space-y-4 max-w-5xl mx-auto text-center">
                     {exp.points.map((pt, i) => (
-                      <li key={i} className="text-[#4b5563] text-base sm:text-lg leading-relaxed text-center">
-                        <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#9333ea] mr-3 align-middle shadow-2xs" />
+                      <li key={i} className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed text-center">
+                        <span className="inline-block w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-slate-500 mr-3 align-middle" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -60,8 +60,8 @@ export default function Experience() {
                 </div>
 
                 {exp.techStack && exp.techStack.length > 0 && (
-                  <div className="pt-6 border-t border-[#ece8f5] flex flex-wrap items-center justify-center gap-2.5">
-                    <span className="text-xs sm:text-sm text-[#9ca3af] font-bold uppercase tracking-wider mr-1">Core Areas:</span>
+                  <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-center gap-2.5">
+                    <span className="text-xs sm:text-sm text-slate-400 font-bold uppercase tracking-wider mr-1">Core Areas:</span>
                     {exp.techStack.map((tech) => (
                       <Badge key={tech} variant="neutral" size="md" className="shadow-2xs">
                         {tech}

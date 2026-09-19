@@ -18,13 +18,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "!bg-[#9333ea] !text-white hover:!bg-[#7e22ce] active:!bg-[#6b21a8] shadow-[0_4px_16px_-2px_rgb(147_51_234/0.35)] hover:shadow-[0_8px_24px_-4px_rgb(147_51_234/0.45)]",
+    "!bg-slate-900 dark:!bg-slate-100 !text-white dark:!text-slate-900 hover:!bg-slate-800 dark:hover:!bg-white active:!bg-slate-950 dark:active:!bg-slate-200 shadow-sm hover:shadow-md",
   secondary:
-    "!bg-[#f3e8ff] !text-[#7e22ce] hover:!bg-[#e9d5ff] active:!bg-[#d8b4fe]",
+    "!bg-slate-100 dark:!bg-slate-800 !text-slate-800 dark:!text-slate-200 hover:!bg-slate-200 dark:hover:!bg-slate-700 active:!bg-slate-300 dark:active:!bg-slate-600 border border-slate-200/80 dark:border-slate-700",
   ghost:
-    "bg-transparent !text-[#9333ea] hover:!bg-[#faf5ff] active:!bg-[#f3e8ff]",
+    "bg-transparent !text-slate-700 dark:!text-slate-300 hover:!bg-slate-100 dark:hover:!bg-slate-800 hover:!text-slate-900 dark:hover:!text-white",
   outline:
-    "bg-transparent border-2 border-[#9333ea] !text-[#9333ea] hover:!bg-[#faf5ff] active:!bg-[#f3e8ff]",
+    "bg-transparent border border-slate-300 dark:border-slate-700 !text-slate-800 dark:!text-slate-200 hover:!bg-slate-50 dark:hover:!bg-slate-800/80 hover:!border-slate-400 dark:hover:!border-slate-600 active:!bg-slate-100 dark:active:!bg-slate-700",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -51,7 +51,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9333ea] focus-visible:ring-offset-2 active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none hover:-translate-y-0.5";
+    "inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 dark:focus-visible:ring-slate-200 focus-visible:ring-offset-2 active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none hover:-translate-y-0.5";
 
   const classes = [
     baseStyles,
@@ -63,15 +63,6 @@ export default function Button({
     .join(" ");
 
   const inlineStyles: React.CSSProperties = {
-    ...(variant === "primary"
-      ? { backgroundColor: "#9333ea", color: "#ffffff" }
-      : {}),
-    ...(variant === "secondary"
-      ? { backgroundColor: "#f3e8ff", color: "#7e22ce" }
-      : {}),
-    ...(variant === "outline"
-      ? { borderColor: "#9333ea", color: "#9333ea" }
-      : {}),
     ...(style || {}),
   };
 

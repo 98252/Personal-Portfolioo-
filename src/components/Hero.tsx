@@ -118,35 +118,29 @@ export default function Hero() {
           <div className='lg:col-span-7 flex flex-col gap-5 sm:gap-6 order-2 lg:order-1'>
             {/* Availability & Scholarship Pill */}
             <div className='flex flex-wrap items-center gap-3 animate-fade-up'>
-              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] text-xs sm:text-sm font-semibold'>
+              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-semibold'>
                 <span className='relative flex h-2.5 w-2.5'>
-                  <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-[#9333ea] opacity-75' />
-                  <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-[#9333ea]' />
+                  <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75' />
+                  <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-600' />
                 </span>
                 Available for Roles & Internships
               </span>
 
-              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs sm:text-sm font-semibold'>
-                <span className='w-2 h-2 rounded-full bg-emerald-500' />
+              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-semibold'>
+                <span className='w-2 h-2 rounded-full bg-slate-400 dark:bg-slate-500' />
                 EdCIL 100% Govt. Scholar
               </span>
             </div>
 
             {/* Main headline */}
             <div className='animate-fade-up' style={{ animationDelay: "80ms" }}>
-              <h1 className='font-extrabold text-[#111827] text-4xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight'>
+              <h1 className='font-extrabold text-slate-900 dark:text-white text-4xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight'>
                 Hi, I&apos;m{" "}
-                <span
-                  className='bg-gradient-to-r from-[#9333ea] via-[#a855f7] to-[#c084fc] bg-clip-text text-transparent'
-                  style={{
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
+                <span className='text-slate-900 dark:text-white'>
                   {personalInfo.name}
                 </span>
               </h1>
-              <p className='mt-3.5 text-base sm:text-xl font-medium text-primary-dark'>
+              <p className='mt-3.5 text-base sm:text-xl font-medium text-slate-600 dark:text-slate-400'>
                 {personalInfo.title} | {personalInfo.subtitle}
               </p>
             </div>
@@ -164,9 +158,9 @@ export default function Hero() {
               ].map((item) => (
                 <span
                   key={item}
-                  className='flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-[#ede9f6] text-[#4b5563] text-xs sm:text-sm md:text-base font-semibold shadow-xs'
+                  className='flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white dark:bg-[#131c31] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs sm:text-sm md:text-base font-medium shadow-2xs'
                 >
-                  <span className='text-[#9333ea]'>
+                  <span className='text-slate-400 dark:text-slate-500'>
                     <SparkleIcon />
                   </span>
                   {item}
@@ -176,7 +170,7 @@ export default function Hero() {
 
             {/* Bio summary */}
             <p
-              className='text-[#4b5563] text-base sm:text-lg lg:text-xl leading-relaxed max-w-3xl lg:max-w-4xl animate-fade-up'
+              className='text-slate-600 dark:text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-3xl lg:max-w-4xl animate-fade-up'
               style={{ animationDelay: "240ms" }}
             >
               {personalInfo.summary}
@@ -184,20 +178,20 @@ export default function Hero() {
 
             {/* Location & Contact Meta */}
             <div
-              className='flex flex-wrap items-center gap-4 sm:gap-7 text-sm sm:text-base text-[#6b7280] animate-fade-up'
+              className='flex flex-wrap items-center gap-4 sm:gap-7 text-sm sm:text-base text-slate-600 dark:text-slate-400 animate-fade-up'
               style={{ animationDelay: "300ms" }}
             >
               <div className='flex items-center gap-2'>
-                <span className='text-[#9333ea]'>
+                <span className='text-slate-400 dark:text-slate-500'>
                   <LocationIcon />
                 </span>
                 <span>{personalInfo.location}</span>
               </div>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className='flex items-center gap-2 hover:text-[#9333ea] transition-colors'
+                className='flex items-center gap-2 hover:text-slate-900 dark:hover:text-white transition-colors'
               >
-                <span className='text-[#9333ea]'>
+                <span className='text-slate-400 dark:text-slate-500'>
                   <MailIcon />
                 </span>
                 <span>{personalInfo.email}</span>
@@ -206,7 +200,7 @@ export default function Hero() {
                 href={personalInfo.website}
                 target='_blank'
                 rel='noreferrer'
-                className='text-[#9333ea] hover:underline font-semibold flex items-center gap-1'
+                className='text-slate-900 dark:text-slate-100 hover:text-slate-700 dark:hover:text-white font-semibold flex items-center gap-1 underline underline-offset-4'
               >
                 <span>rahulks.com.np</span>
                 <span>↗</span>
@@ -255,7 +249,7 @@ export default function Hero() {
                   target='_blank'
                   rel='noreferrer'
                   aria-label='GitHub Profile'
-                  className='p-3.5 rounded-xl border border-[#ece8f5] bg-white text-[#374151] hover:text-[#9333ea] hover:border-[#c084fc] hover:shadow-md transition-all'
+                  className='p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#131c31] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all'
                 >
                   <GithubIcon />
                 </a>
@@ -264,7 +258,7 @@ export default function Hero() {
                   target='_blank'
                   rel='noreferrer'
                   aria-label='LinkedIn Profile'
-                  className='p-3.5 rounded-xl border border-[#ece8f5] bg-white text-[#374151] hover:text-[#9333ea] hover:border-[#c084fc] hover:shadow-md transition-all'
+                  className='p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#131c31] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all'
                 >
                   <LinkedinIcon />
                 </a>
@@ -280,12 +274,12 @@ export default function Hero() {
             <div className='relative'>
               {/* Soft purple gradient backglow */}
               <div
-                className='absolute -inset-6 rounded-[40px] opacity-30 bg-gradient-to-tr from-[#9333ea] via-[#c084fc] to-[#e9d5ff] blur-2xl'
+                className='absolute -inset-6 rounded-[40px] opacity-30 dark:opacity-20 bg-gradient-to-tr from-[#9333ea] via-[#c084fc] to-[#e9d5ff] blur-2xl'
                 aria-hidden='true'
               />
 
               {/* Photo Card Container */}
-              <div className='relative w-[290px] sm:w-[350px] lg:w-[380px] xl:w-[420px] h-[380px] sm:h-[450px] lg:h-[490px] xl:h-[530px] rounded-[32px] overflow-hidden shadow-[0_20px_50px_-10px_rgb(147_51_234/0.25)] border-4 sm:border-6 border-white bg-white'>
+              <div className='relative w-[290px] sm:w-[350px] lg:w-[380px] xl:w-[420px] h-[380px] sm:h-[450px] lg:h-[490px] xl:h-[530px] rounded-[32px] overflow-hidden shadow-[0_20px_50px_-10px_rgb(0_0_0/0.15)] dark:shadow-[0_20px_50px_-10px_rgb(0_0_0/0.6)] border-4 sm:border-6 border-white dark:border-slate-800 bg-white dark:bg-slate-900'>
                 <Image
                   src={personalInfo.profileImage}
                   alt={`${personalInfo.name} - Computer Science Student`}

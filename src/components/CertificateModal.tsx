@@ -31,16 +31,16 @@ export default function CertificateModal({ data, onClose }: CertificateModalProp
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-[#ece8f5] relative overflow-hidden animate-fade-up"
+        className="bg-white dark:bg-[#0f172a] rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-[#ece8f5] dark:border-slate-800 relative overflow-hidden animate-fade-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#ece8f5] bg-white sticky top-0 z-10">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] sticky top-0 z-10">
           <div className="pr-8">
-            <span className="text-xs font-bold text-[#9333ea] uppercase tracking-wider block">
+            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
               {data.issuerOrOrg}
             </span>
-            <h3 className="text-base sm:text-lg font-bold text-[#111827] line-clamp-1">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white line-clamp-1">
               {data.title}
             </h3>
           </div>
@@ -48,7 +48,7 @@ export default function CertificateModal({ data, onClose }: CertificateModalProp
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="text-[#9ca3af] hover:text-[#111827] w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#f3f4f6] transition-colors flex-shrink-0 text-xl font-semibold"
+            className="text-slate-400 hover:text-slate-900 dark:hover:text-white w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex-shrink-0 text-xl font-semibold cursor-pointer"
           >
             ✕
           </button>
@@ -58,7 +58,7 @@ export default function CertificateModal({ data, onClose }: CertificateModalProp
         <div className="p-6 overflow-y-auto space-y-5">
           {/* Certificate Image Preview */}
           {data.imageUrl ? (
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden border border-[#ece8f5] bg-neutral-50 shadow-inner group">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-neutral-50 dark:bg-slate-900 shadow-inner group">
               <Image
                 src={data.imageUrl}
                 alt={`${data.title} Certificate`}
@@ -82,12 +82,12 @@ export default function CertificateModal({ data, onClose }: CertificateModalProp
               </a>
             </div>
           ) : (
-            <div className="p-8 text-center rounded-2xl bg-[#faf5ff] border border-[#e9d5ff]">
-              <div className="w-16 h-16 rounded-2xl bg-white border border-[#e9d5ff] flex items-center justify-center text-3xl mx-auto mb-3 shadow-xs">
+            <div className="p-8 text-center rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <div className="w-16 h-16 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-3xl mx-auto mb-3 shadow-xs">
                 📜
               </div>
-              <p className="font-bold text-[#111827] text-base">{data.title}</p>
-              <p className="text-xs text-[#9333ea] font-semibold mt-1">Issued by {data.issuerOrOrg}</p>
+              <p className="font-bold text-slate-900 dark:text-white text-base">{data.title}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Issued by {data.issuerOrOrg}</p>
             </div>
           )}
 
@@ -95,24 +95,24 @@ export default function CertificateModal({ data, onClose }: CertificateModalProp
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-2">
               {data.score && (
-                <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
+                <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/70 text-xs font-bold">
                   Score: {data.score}
                 </span>
               )}
               {data.badge && (
-                <span className="px-3 py-1 rounded-full bg-[#f3e8ff] text-[#7e22ce] border border-[#e9d5ff] text-xs font-semibold">
+                <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-xs font-semibold">
                   {data.badge}
                 </span>
               )}
               {data.date && (
-                <span className="px-3 py-1 rounded-full bg-[#f5f5f5] text-[#525252] text-xs font-medium border border-[#e5e5e5]">
+                <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">
                   📅 {data.date}
                 </span>
               )}
             </div>
 
             {data.description && (
-              <p className="text-sm text-[#4b5563] leading-relaxed bg-[#fafafa] p-4 rounded-xl border border-[#ece8f5]">
+              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
                 {data.description}
               </p>
             )}
@@ -120,8 +120,8 @@ export default function CertificateModal({ data, onClose }: CertificateModalProp
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-[#ece8f5] bg-[#fafafa] flex items-center justify-between">
-          <span className="text-xs text-[#9ca3af] font-medium">Verified Certificate Document</span>
+        <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0b1120] flex items-center justify-between">
+          <span className="text-xs text-slate-400 dark:text-slate-400 font-medium">Verified Certificate Document</span>
           <div className="flex items-center gap-3">
             {data.imageUrl && (
               <Button

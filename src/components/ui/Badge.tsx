@@ -6,9 +6,9 @@ interface BadgeProps {
 }
 
 const variantMap = {
-  purple: 'bg-[#f3e8ff] text-[#7e22ce] border border-[#e9d5ff]',
-  neutral: 'bg-[#f5f5f5] text-[#525252] border border-[#e5e5e5]',
-  outline: 'bg-transparent text-[#9333ea] border border-[#9333ea]',
+  purple: 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80',
+  neutral: 'bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700',
+  outline: 'bg-transparent text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700',
 };
 
 const sizeMap = {
