@@ -20,8 +20,8 @@ export default function SkillCard({ group }: SkillCardProps) {
 
   return (
     <Card
-      padding="lg"
-      className="border border-[#ece8f5] bg-white hover:-translate-y-1.5 hover:shadow-lg hover:border-[#c084fc] transition-all duration-300 flex flex-col justify-between"
+      padding="none"
+      className="w-full border border-[#ece8f5] bg-white hover:-translate-y-1.5 hover:shadow-lg hover:border-[#c084fc] transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 rounded-2xl"
     >
       <div>
         <div className="flex items-center gap-3 mb-4">

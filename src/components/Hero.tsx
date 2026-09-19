@@ -75,7 +75,7 @@ export default function Hero() {
   return (
     <section
       id='hero'
-      className='relative min-h-[92vh] flex items-center overflow-hidden pt-28 sm:pt-24 md:pt-20 pb-12'
+      className='relative min-h-[82vh] flex flex-col justify-center overflow-hidden pt-28 sm:pt-32 pb-10 sm:pb-12'
       aria-label='Hero section'
     >
       {/* ── Background decorations ── */}
@@ -85,20 +85,20 @@ export default function Hero() {
       >
         {/* Large orb top-right */}
         <div
-          className='absolute -top-24 -right-24 w-[600px] h-[600px] rounded-full opacity-25'
+          className='absolute -top-24 -right-24 w-[700px] h-[700px] rounded-full opacity-25'
           style={{
             background:
               "radial-gradient(circle at 40% 40%, #c084fc 0%, #9333ea 40%, transparent 70%)",
-            filter: "blur(80px)",
+            filter: "blur(90px)",
           }}
         />
         {/* Orb bottom-left */}
         <div
-          className='absolute bottom-10 -left-20 w-[450px] h-[450px] rounded-full opacity-20'
+          className='absolute bottom-10 -left-20 w-[550px] h-[550px] rounded-full opacity-20'
           style={{
             background:
               "radial-gradient(circle, #e9d5ff 0%, #c084fc 60%, transparent 80%)",
-            filter: "blur(70px)",
+            filter: "blur(80px)",
           }}
         />
         {/* Subtle dot grid */}
@@ -113,12 +113,12 @@ export default function Hero() {
       </div>
 
       <div className='container-fluid relative z-10'>
-        <div className='grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center'>
+        <div className='w-full max-w-6xl xl:max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center'>
           {/* ────────── LEFT COLUMN — Text (7 cols) ────────── */}
           <div className='lg:col-span-7 flex flex-col gap-5 sm:gap-6 order-2 lg:order-1'>
             {/* Availability & Scholarship Pill */}
-            <div className='flex flex-wrap items-center gap-2.5 animate-fade-up'>
-              <span className='inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] text-xs sm:text-sm font-medium'>
+            <div className='flex flex-wrap items-center gap-3 animate-fade-up'>
+              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] text-xs sm:text-sm font-semibold'>
                 <span className='relative flex h-2.5 w-2.5'>
                   <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-[#9333ea] opacity-75' />
                   <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-[#9333ea]' />
@@ -126,7 +126,7 @@ export default function Hero() {
                 Available for Roles & Internships
               </span>
 
-              <span className='inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs sm:text-sm font-medium'>
+              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs sm:text-sm font-semibold'>
                 <span className='w-2 h-2 rounded-full bg-emerald-500' />
                 EdCIL 100% Govt. Scholar
               </span>
@@ -134,7 +134,7 @@ export default function Hero() {
 
             {/* Main headline */}
             <div className='animate-fade-up' style={{ animationDelay: "80ms" }}>
-              <h1 className='font-extrabold text-[#111827] text-3xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight'>
+              <h1 className='font-extrabold text-[#111827] text-4xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight'>
                 Hi, I&apos;m{" "}
                 <span
                   className='bg-gradient-to-r from-[#9333ea] via-[#a855f7] to-[#c084fc] bg-clip-text text-transparent'
@@ -146,14 +146,14 @@ export default function Hero() {
                   {personalInfo.name}
                 </span>
               </h1>
-              <p className='mt-3 text-base sm:text-xl font-medium text-primary-dark'>
+              <p className='mt-3.5 text-base sm:text-xl font-medium text-primary-dark'>
                 {personalInfo.title} | {personalInfo.subtitle}
               </p>
             </div>
 
             {/* Role Tags */}
             <div
-              className='flex flex-wrap gap-2 animate-fade-up'
+              className='flex flex-wrap gap-2.5 animate-fade-up'
               style={{ animationDelay: "160ms" }}
             >
               {[
@@ -164,7 +164,7 @@ export default function Hero() {
               ].map((item) => (
                 <span
                   key={item}
-                  className='flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#ede9f6] text-[#4b5563] text-xs sm:text-sm font-medium shadow-xs'
+                  className='flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-[#ede9f6] text-[#4b5563] text-xs sm:text-sm md:text-base font-semibold shadow-xs'
                 >
                   <span className='text-[#9333ea]'>
                     <SparkleIcon />
@@ -176,7 +176,7 @@ export default function Hero() {
 
             {/* Bio summary */}
             <p
-              className='text-[#4b5563] text-base sm:text-lg leading-relaxed max-w-2xl animate-fade-up'
+              className='text-[#4b5563] text-base sm:text-lg lg:text-xl leading-relaxed max-w-3xl lg:max-w-4xl animate-fade-up'
               style={{ animationDelay: "240ms" }}
             >
               {personalInfo.summary}
@@ -184,10 +184,10 @@ export default function Hero() {
 
             {/* Location & Contact Meta */}
             <div
-              className='flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-[#6b7280] animate-fade-up'
+              className='flex flex-wrap items-center gap-4 sm:gap-7 text-sm sm:text-base text-[#6b7280] animate-fade-up'
               style={{ animationDelay: "300ms" }}
             >
-              <div className='flex items-center gap-1.5'>
+              <div className='flex items-center gap-2'>
                 <span className='text-[#9333ea]'>
                   <LocationIcon />
                 </span>
@@ -195,7 +195,7 @@ export default function Hero() {
               </div>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className='flex items-center gap-1.5 hover:text-[#9333ea] transition-colors'
+                className='flex items-center gap-2 hover:text-[#9333ea] transition-colors'
               >
                 <span className='text-[#9333ea]'>
                   <MailIcon />
@@ -206,15 +206,16 @@ export default function Hero() {
                 href={personalInfo.website}
                 target='_blank'
                 rel='noreferrer'
-                className='text-[#9333ea] hover:underline font-medium'
+                className='text-[#9333ea] hover:underline font-semibold flex items-center gap-1'
               >
-                rahulks.com.np ↗
+                <span>rahulks.com.np</span>
+                <span>↗</span>
               </a>
             </div>
 
             {/* CTA buttons & Socials */}
             <div
-              className='flex flex-wrap items-center gap-3 pt-2 animate-fade-up'
+              className='flex flex-wrap items-center gap-3.5 pt-3 animate-fade-up'
               style={{ animationDelay: "360ms" }}
             >
               <Button
@@ -224,24 +225,37 @@ export default function Hero() {
                 size='lg'
                 icon={<ArrowIcon />}
                 iconPosition='right'
+                className='px-7 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg'
               >
                 View Projects
               </Button>
-              <Button as='a' href='#resume' variant='outline' size='lg'>
+              <Button
+                as='a'
+                href='#resume'
+                variant='outline'
+                size='lg'
+                className='px-7 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg'
+              >
                 View Resume
               </Button>
-              <Button as='a' href='#contact' variant='secondary' size='lg'>
+              <Button
+                as='a'
+                href='#contact'
+                variant='secondary'
+                size='lg'
+                className='px-7 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg'
+              >
                 Contact Me
               </Button>
 
               {/* Social icons */}
-              <div className='flex items-center gap-2 sm:ml-1'>
+              <div className='flex items-center gap-2.5 sm:ml-2'>
                 <a
                   href={personalInfo.github}
                   target='_blank'
                   rel='noreferrer'
                   aria-label='GitHub Profile'
-                  className='p-3 rounded-xl border border-[#ece8f5] bg-white text-[#374151] hover:text-[#9333ea] hover:border-[#c084fc] hover:shadow-md transition-all'
+                  className='p-3.5 rounded-xl border border-[#ece8f5] bg-white text-[#374151] hover:text-[#9333ea] hover:border-[#c084fc] hover:shadow-md transition-all'
                 >
                   <GithubIcon />
                 </a>
@@ -250,7 +264,7 @@ export default function Hero() {
                   target='_blank'
                   rel='noreferrer'
                   aria-label='LinkedIn Profile'
-                  className='p-3 rounded-xl border border-[#ece8f5] bg-white text-[#374151] hover:text-[#9333ea] hover:border-[#c084fc] hover:shadow-md transition-all'
+                  className='p-3.5 rounded-xl border border-[#ece8f5] bg-white text-[#374151] hover:text-[#9333ea] hover:border-[#c084fc] hover:shadow-md transition-all'
                 >
                   <LinkedinIcon />
                 </a>
@@ -260,31 +274,31 @@ export default function Hero() {
 
           {/* ────────── RIGHT COLUMN — Photo Card (5 cols) ────────── */}
           <div
-            className='lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2 animate-fade-up'
+            className='lg:col-span-5 flex justify-center items-center order-1 lg:order-2 animate-fade-up'
             style={{ animationDelay: "200ms" }}
           >
             <div className='relative'>
               {/* Soft purple gradient backglow */}
               <div
-                className='absolute -inset-4 rounded-[36px] opacity-30 bg-gradient-to-tr from-[#9333ea] via-[#c084fc] to-[#e9d5ff] blur-xl'
+                className='absolute -inset-6 rounded-[40px] opacity-30 bg-gradient-to-tr from-[#9333ea] via-[#c084fc] to-[#e9d5ff] blur-2xl'
                 aria-hidden='true'
               />
 
               {/* Photo Card Container */}
-              <div className='relative w-[280px] sm:w-[330px] h-[370px] sm:h-[430px] rounded-[28px] overflow-hidden shadow-[0_20px_50px_-10px_rgb(147_51_234/0.28)] border-4 border-white bg-white'>
+              <div className='relative w-[290px] sm:w-[350px] lg:w-[380px] xl:w-[420px] h-[380px] sm:h-[450px] lg:h-[490px] xl:h-[530px] rounded-[32px] overflow-hidden shadow-[0_20px_50px_-10px_rgb(147_51_234/0.25)] border-4 sm:border-6 border-white bg-white'>
                 <Image
                   src={personalInfo.profileImage}
                   alt={`${personalInfo.name} - Computer Science Student`}
                   fill
                   priority
-                  className='object-cover object-top scale-[0.93]'
-                  sizes='(max-width: 640px) 280px, 330px'
+                  className='object-cover object-center'
+                  sizes='(max-width: 640px) 290px, (max-width: 1024px) 380px, 420px'
                 />
                 <div
                   className='absolute inset-0 pointer-events-none'
                   style={{
                     background:
-                      "linear-gradient(to top, rgba(147,51,234,0.18) 0%, transparent 40%)",
+                      "linear-gradient(to top, rgba(147,51,234,0.14) 0%, transparent 35%)",
                   }}
                 />
               </div>

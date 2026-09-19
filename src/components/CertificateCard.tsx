@@ -9,8 +9,8 @@ interface CertificateCardProps {
 export default function CertificateCard({ cert, onSelect }: CertificateCardProps) {
   return (
     <Card
-      padding="lg"
-      className="border border-[#ece8f5] bg-white hover:-translate-y-1.5 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+      padding="none"
+      className="w-full border border-[#ece8f5] bg-white hover:-translate-y-1.5 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 cursor-pointer group flex flex-col justify-between p-6 rounded-2xl"
       onClick={() => onSelect && onSelect(cert)}
     >
       <div>

@@ -35,12 +35,109 @@ const LocationPinIcon = () => (
 );
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'needs_activation' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitted(true);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        setStatus('success');
+      } else if (result.needsActivation) {
+        setStatus('needs_activation');
+      } else {
+        setStatus('error');
+        setErrorMessage(result.message || 'Unable to send message at this time.');
+      }
+    } catch {
+      // Fallback directly to FormSubmit
+      try {
+        const directRes = await fetch('https://formsubmit.co/ajax/sahr67568@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            ...formData,
+            _subject: `New Portfolio Message from ${formData.name}: ${formData.subject}`,
+            _template: 'table',
+            _captcha: 'false',
+          }),
+        });
+        const directData = await directRes.json();
+        if (directData.success === 'true' || directData.success === true) {
+          setStatus('success');
+          return;
+        }
+        if (typeof directData.message === 'string' && directData.message.includes('Activation')) {
+          setStatus('needs_activation');
+          return;
+        }
+      } catch {
+        // Fallback failed
+      }
+      setStatus('error');
+      setErrorMessage('Network error while transmitting message. You can send directly via email below.');
+    }
+  };
+
+  const handleRetry = async () => {
+    setStatus('loading');
+    setErrorMessage('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = await res.json();
+      if (result.success) {
+        setStatus('success');
+      } else if (result.needsActivation) {
+        setStatus('needs_activation');
+      } else {
+        setStatus('error');
+        setErrorMessage(result.message || 'Unable to send message.');
+      }
+    } catch {
+      setStatus('error');
+      setErrorMessage('Network error while transmitting message.');
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setStatus('idle');
+    setErrorMessage('');
+  };
+
+  const mailtoUrl = `mailto:sahr67568@gmail.com?subject=${encodeURIComponent(
+    formData.subject || 'Portfolio Inquiry'
+  )}&body=${encodeURIComponent(
+    `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+  )}`;
 
   return (
     <section id="contact" className="section-py bg-section-white section-divider" aria-label="Contact Section">
@@ -52,10 +149,10 @@ export default function Contact() {
           subtitle="Feel free to reach out for software development opportunities, AI projects, internships, or technical collaborations."
         />
 
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
+        <div className="mt-10 w-full max-w-6xl xl:max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Left Column: Direct Contact Info (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
-            <Card padding="lg" className="border border-[#ece8f5] bg-white shadow-sm flex flex-col gap-6">
+            <Card padding="none" className="w-full border border-[#ece8f5] bg-white shadow-sm flex flex-col gap-6 p-6 sm:p-8 lg:p-10 rounded-3xl">
               <h3 className="text-xl font-bold text-[#111827]">Contact Details</h3>
               <p className="text-sm text-[#6b7280] leading-relaxed">
                 I am actively seeking software engineering internships and developer roles. Send a message or reach out through direct channels:
@@ -130,39 +227,140 @@ export default function Contact() {
 
           {/* Right Column: Contact Message Form (7 cols) */}
           <div className="lg:col-span-7">
-            <Card padding="none" className="border border-[#ece8f5] bg-white shadow-sm p-6 sm:p-8">
-              <h3 className="text-xl font-bold text-[#111827] mb-1.5">Send a Message</h3>
-              <p className="text-sm text-[#6b7280] mb-6 leading-relaxed">Leave a note and I will get back to you promptly.</p>
+            <Card padding="none" className="w-full border border-[#ece8f5] bg-white shadow-sm p-6 sm:p-8 lg:p-10 rounded-3xl">
+              <div className="flex items-center justify-between mb-1.5">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#111827]">Send a Message</h3>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#faf5ff] text-[#9333ea] border border-[#e9d5ff]">
+                  Direct to Inbox
+                </span>
+              </div>
+              <p className="text-sm text-[#6b7280] mb-6 leading-relaxed">
+                Fill in the form below and your message will be delivered directly to <strong className="text-[#9333ea]">sahr67568@gmail.com</strong>.
+              </p>
 
-              {submitted ? (
-                <div className="p-6 rounded-2xl bg-[#faf5ff] border border-[#e9d5ff] text-center">
-                  <div className="w-12 h-12 rounded-full bg-[#9333ea] text-white flex items-center justify-center mx-auto mb-3 text-xl shadow-xs">
+              {/* SUCCESS STATE */}
+              {status === 'success' && (
+                <div className="p-8 rounded-2xl bg-emerald-50/60 border border-emerald-200 text-center flex flex-col items-center gap-4 animate-fade-up">
+                  <div className="w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-md">
                     ✓
                   </div>
-                  <h4 className="text-lg font-bold text-[#111827]">Message Received!</h4>
-                  <p className="text-sm text-[#6b7280] mt-1">Thank you for reaching out, Rahul will respond shortly.</p>
+                  <div>
+                    <h4 className="text-xl font-bold text-[#111827]">Message Sent Successfully!</h4>
+                    <p className="text-sm text-[#4b5563] mt-2 max-w-md leading-relaxed">
+                      Thank you for contacting, your message has been delivered to <strong>sahr67568@gmail.com</strong>. Rahul will reply to you shortly.
+                    </p>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={handleReset}
+                    className="mt-2 text-sm font-semibold !border-[#9333ea] !text-[#9333ea] hover:!bg-[#faf5ff]"
+                  >
+                    Send Another Message
+                  </Button>
                 </div>
-              ) : (
+              )}
+
+              {/* ONE-TIME ACTIVATION STATE */}
+              {status === 'needs_activation' && (
+                <div className="p-6 sm:p-7 rounded-2xl bg-[#faf5ff] border border-[#e9d5ff] text-left flex flex-col gap-4 animate-fade-up">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-xl bg-[#9333ea] text-white flex items-center justify-center text-xl shrink-0">
+                      📬
+                    </span>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#111827]">
+                        One-Time Email Verification Required
+                      </h4>
+                      <p className="text-xs text-[#9333ea] font-semibold">Security protection for sahr67568@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-[#4b5563] space-y-2 leading-relaxed bg-white p-4 rounded-xl border border-[#ece8f5]">
+                    <p className="font-medium text-[#111827]">To prevent spam, FormSubmit requires email verification once:</p>
+                    <ol className="list-decimal list-inside space-y-1 text-xs sm:text-sm text-[#4b5563]">
+                      <li>Open your Gmail inbox at <strong>sahr67568@gmail.com</strong> (check Spam folder if needed).</li>
+                      <li>Open the email from <strong>FormSubmit</strong> titled <em>&quot;Action Required: Activate your FormSubmit form&quot;</em>.</li>
+                      <li>Click the green <strong>&quot;Activate Form&quot;</strong> button inside that email.</li>
+                    </ol>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <Button
+                      type="button"
+                      variant="primary"
+                      size="sm"
+                      onClick={handleRetry}
+                      className="px-5 py-2.5 rounded-xl !bg-[#9333ea] !text-white font-bold text-sm hover:!bg-[#7e22ce] shadow-sm transition-all flex items-center gap-2 cursor-pointer"
+                    >
+                      <span>I Clicked Activate in Gmail, Send Now</span>
+                      <span>→</span>
+                    </Button>
+
+                    <a
+                      href={mailtoUrl}
+                      className="px-4 py-2 rounded-xl bg-white border border-[#ece8f5] text-[#374151] hover:text-[#9333ea] hover:border-[#c084fc] text-xs font-semibold transition-all inline-flex items-center gap-1.5"
+                    >
+                      <span>Or Send via Email App</span>
+                      <span>↗</span>
+                    </a>
+
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setStatus('idle')}
+                      className="text-xs text-[#6b7280] hover:text-[#111827]"
+                    >
+                      Back to Form
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* IDLE / LOADING / ERROR FORM */}
+              {status !== 'success' && status !== 'needs_activation' && (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  {status === 'error' && (
+                    <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                      <span>{errorMessage}</span>
+                      <a
+                        href={mailtoUrl}
+                        className="font-bold underline text-red-800 hover:text-red-900 shrink-0"
+                      >
+                        Send via Email App ↗
+                      </a>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
-                        Your Name
+                        Your Name <span className="text-[#9333ea]">*</span>
                       </label>
                       <input
                         type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         required
-                        className="w-full px-4 py-2.5 rounded-xl border border-[#ece8f5] focus:border-[#9333ea] focus:ring-2 focus:ring-[#f3e8ff] outline-none text-sm transition-all text-[#111827] bg-white"
+                        disabled={status === 'loading'}
+                        className="w-full px-4 py-2.5 rounded-xl border border-[#ece8f5] focus:border-[#9333ea] focus:ring-2 focus:ring-[#f3e8ff] outline-none text-sm transition-all text-[#111827] bg-white disabled:bg-[#f9fafb]"
                       />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
-                        Your Email
+                        Your Email <span className="text-[#9333ea]">*</span>
                       </label>
                       <input
                         type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
-                        className="w-full px-4 py-2.5 rounded-xl border border-[#ece8f5] focus:border-[#9333ea] focus:ring-2 focus:ring-[#f3e8ff] outline-none text-sm transition-all text-[#111827] bg-white"
+                        disabled={status === 'loading'}
+                        className="w-full px-4 py-2.5 rounded-xl border border-[#ece8f5] focus:border-[#9333ea] focus:ring-2 focus:ring-[#f3e8ff] outline-none text-sm transition-all text-[#111827] bg-white disabled:bg-[#f9fafb]"
                       />
                     </div>
                   </div>
@@ -173,31 +371,59 @@ export default function Contact() {
                     </label>
                     <input
                       type="text"
-                      required
-                      className="w-full px-4 py-2.5 rounded-xl border border-[#ece8f5] focus:border-[#9333ea] focus:ring-2 focus:ring-[#f3e8ff] outline-none text-sm transition-all text-[#111827] bg-white"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      disabled={status === 'loading'}
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#ece8f5] focus:border-[#9333ea] focus:ring-2 focus:ring-[#f3e8ff] outline-none text-sm transition-all text-[#111827] bg-white disabled:bg-[#f9fafb]"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
-                      Message
+                      Message <span className="text-[#9333ea]">*</span>
                     </label>
                     <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       required
+                      disabled={status === 'loading'}
                       rows={4}
-                      className="w-full px-4 py-2.5 rounded-xl border border-[#ece8f5] focus:border-[#9333ea] focus:ring-2 focus:ring-[#f3e8ff] outline-none text-sm transition-all resize-none text-[#111827] bg-white"
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#ece8f5] focus:border-[#9333ea] focus:ring-2 focus:ring-[#f3e8ff] outline-none text-sm transition-all resize-none text-[#111827] bg-white disabled:bg-[#f9fafb]"
                     />
                   </div>
 
-                  <div className="pt-3 pb-1">
+                  <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <Button
                       type="submit"
                       variant="primary"
                       size="md"
-                      className="w-full sm:w-auto px-7 py-3 font-bold !bg-[#9333ea] !text-white hover:!bg-[#7e22ce] shadow-md shadow-purple-500/25 cursor-pointer"
+                      disabled={status === 'loading'}
+                      className="w-full sm:w-auto px-8 py-3.5 font-bold !bg-[#9333ea] !text-white hover:!bg-[#7e22ce] shadow-md shadow-purple-500/25 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
-                      Send Message
+                      {status === 'loading' ? (
+                        <>
+                          <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24" fill="none">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          <span>Sending to sahr67568@gmail.com...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send Message</span>
+                          <span>→</span>
+                        </>
+                      )}
                     </Button>
+
+                    <a
+                      href={`mailto:${personalInfo.email}`}
+                      className="text-xs font-semibold text-[#6b7280] hover:text-[#9333ea] transition-colors"
+                    >
+                      Prefer default mail app? Open Mail ↗
+                    </a>
                   </div>
                 </form>
               )}

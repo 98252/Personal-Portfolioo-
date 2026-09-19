@@ -41,11 +41,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-white/85 backdrop-blur-xl shadow-[0_2px_20px_-4px_rgb(0_0_0/0.08)] border-b border-border-subtle/90"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <nav className='container-fluid'>
         <div className='flex items-center justify-between h-16 md:h-18'>
@@ -73,11 +72,10 @@ export default function Navbar() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      isActive
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive
                         ? "text-primary bg-primary-faint"
                         : "text-[#525252] hover:text-primary hover:bg-primary-faint"
-                    }`}
+                      }`}
                   >
                     {link.label}
                   </a>
@@ -95,19 +93,16 @@ export default function Navbar() {
             className='md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-primary-faint transition-colors gap-1.25 p-2'
           >
             <span
-              className={`block h-0.5 w-5 bg-[#404040] rounded-full transition-all duration-300 ${
-                mobileOpen ? "rotate-45 translate-y-1.75" : ""
-              }`}
+              className={`block h-0.5 w-5 bg-[#404040] rounded-full transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-1.75" : ""
+                }`}
             />
             <span
-              className={`block h-0.5 w-5 bg-[#404040] rounded-full transition-all duration-300 ${
-                mobileOpen ? "opacity-0 scale-x-0" : ""
-              }`}
+              className={`block h-0.5 w-5 bg-[#404040] rounded-full transition-all duration-300 ${mobileOpen ? "opacity-0 scale-x-0" : ""
+                }`}
             />
             <span
-              className={`block h-0.5 w-5 bg-[#404040] rounded-full transition-all duration-300 ${
-                mobileOpen ? "-rotate-45 -translate-y-1.75" : ""
-              }`}
+              className={`block h-0.5 w-5 bg-[#404040] rounded-full transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-1.75" : ""
+                }`}
             />
           </button>
         </div>
@@ -115,9 +110,8 @@ export default function Navbar() {
 
       {/* ── Mobile menu panel ── */}
       <div
-        className={`md:hidden transition-all duration-300 ease-out overflow-hidden ${
-          mobileOpen ? "max-h-105 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`md:hidden transition-all duration-300 ease-out overflow-hidden ${mobileOpen ? "max-h-105 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className='bg-white/95 backdrop-blur-xl border-t border-border-subtle px-4 py-4'>
           <ul className='flex flex-col gap-1'>
@@ -129,11 +123,10 @@ export default function Navbar() {
                   <a
                     href={link.href}
                     onClick={handleNavClick}
-                    className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                      isActive
+                    className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive
                         ? "text-primary bg-primary-faint"
                         : "text-[#404040] hover:text-primary hover:bg-primary-faint"
-                    }`}
+                      }`}
                   >
                     {link.label}
                   </a>

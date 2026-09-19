@@ -64,9 +64,9 @@
   --shadow-purple-lg: 0 16px 44px -8px rgb(147 51 234 / 0.28);
 
   /* Spacing — section vertical rhythm */
-  --section-py: clamp(4.5rem, 7vw, 6.5rem);
-  --section-gap: clamp(2.5rem, 4vw, 4rem);
-  --card-gap: 1.75rem;
+  --section-py: clamp(3.25rem, 5vw, 4.75rem);
+  --section-gap: clamp(1.75rem, 3vw, 2.5rem);
+  --card-gap: 1.5rem;
 
   /* Radii */
   --radius-sm: 6px;
@@ -290,12 +290,22 @@ p {
    LAYOUT UTILITIES
    ═══════════════════════════════════════════════════════════════ */
 
-/* Responsive container */
+/* Responsive container — expansive yet cohesive layout without dead voids */
 .container-fluid {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  padding-left: clamp(1.25rem, 3.5vw, 3rem);
+  padding-right: clamp(1.25rem, 3.5vw, 3rem);
+  padding-inline: clamp(1.25rem, 3.5vw, 3rem);
+}
+
+/* Ensure mx-auto always applies standard margin-left and margin-right auto */
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* Section vertical padding */

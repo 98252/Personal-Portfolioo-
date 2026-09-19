@@ -24,8 +24,8 @@ const ExternalIcon = () => (
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card
-      padding="lg"
-      className="border border-[#ece8f5] bg-white hover:-translate-y-2 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 flex flex-col justify-between"
+      padding="none"
+      className="w-full border border-[#ece8f5] bg-white hover:-translate-y-2 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 rounded-2xl"
     >
       <div>
         {/* Header: Category & Date */}

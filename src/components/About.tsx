@@ -44,40 +44,40 @@ export default function About() {
           subtitle="A results-oriented Computer Science student focused on building intelligent software, scalable web platforms, and secure APIs."
         />
 
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+        <div className="mt-10 w-full max-w-6xl xl:max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Left Column: Detailed Bio (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col gap-5">
+          <div className="lg:col-span-7 flex flex-col gap-6">
             <Card
-              padding="lg"
-              className="border border-[#ece8f5] bg-white shadow-sm hover:shadow-md transition-all duration-300"
+              padding="none"
+              className="w-full border border-[#ece8f5] bg-white shadow-sm hover:shadow-md transition-all duration-300 p-8 sm:p-10 lg:p-12 rounded-3xl text-center"
             >
-              <h3 className="text-lg font-bold text-[#111827] flex items-center gap-2.5">
-                <span className="w-2 h-5 rounded-full bg-gradient-to-b from-[#9333ea] to-[#c084fc]" />
+              <h3 className="text-xl sm:text-2xl font-bold text-[#111827] flex items-center justify-center gap-3 text-center">
+                <span className="w-2.5 h-6 rounded-full bg-gradient-to-b from-[#9333ea] to-[#c084fc]" />
                 Profile Summary
               </h3>
 
-              <p className="mt-4 text-[#374151] text-base leading-relaxed">
+              <p className="mt-5 text-[#374151] text-base sm:text-lg lg:text-xl leading-relaxed text-center">
                 {personalInfo.summary}
               </p>
 
-              <div className="mt-6 pt-5 border-t border-[#ece8f5] grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-0.5">
-                  <span className="text-[#9ca3af] block text-[11px] uppercase tracking-widest font-semibold">Location</span>
-                  <span className="font-semibold text-[#111827] text-sm">{personalInfo.location}</span>
+              <div className="mt-8 pt-6 border-t border-[#ece8f5] grid grid-cols-1 sm:grid-cols-2 gap-5 text-center">
+                <div className="space-y-1 text-center">
+                  <span className="text-[#9ca3af] block text-xs uppercase tracking-widest font-bold">Location</span>
+                  <span className="font-semibold text-[#111827] text-base block">{personalInfo.location}</span>
                 </div>
-                <div className="space-y-0.5">
-                  <span className="text-[#9ca3af] block text-[11px] uppercase tracking-widest font-semibold">Degree</span>
-                  <span className="font-semibold text-[#111827] text-sm">B.Tech CSE · 2023–Present</span>
+                <div className="space-y-1 text-center">
+                  <span className="text-[#9ca3af] block text-xs uppercase tracking-widest font-bold">Degree</span>
+                  <span className="font-semibold text-[#111827] text-base block">B.Tech CSE · 2023–Present</span>
                 </div>
-                <div className="space-y-0.5">
-                  <span className="text-[#9ca3af] block text-[11px] uppercase tracking-widest font-semibold">Email</span>
-                  <a href={`mailto:${personalInfo.email}`} className="font-semibold text-[#9333ea] hover:underline text-sm">
+                <div className="space-y-1 text-center">
+                  <span className="text-[#9ca3af] block text-xs uppercase tracking-widest font-bold">Email</span>
+                  <a href={`mailto:${personalInfo.email}`} className="font-semibold text-[#9333ea] hover:underline text-base block">
                     {personalInfo.email}
                   </a>
                 </div>
-                <div className="space-y-0.5">
-                  <span className="text-[#9ca3af] block text-[11px] uppercase tracking-widest font-semibold">Portfolio</span>
-                  <a href={personalInfo.website} target="_blank" rel="noreferrer" className="font-semibold text-[#9333ea] hover:underline text-sm">
+                <div className="space-y-1 text-center">
+                  <span className="text-[#9ca3af] block text-xs uppercase tracking-widest font-bold">Portfolio</span>
+                  <a href={personalInfo.website} target="_blank" rel="noreferrer" className="font-semibold text-[#9333ea] hover:underline text-base block">
                     rahulks.com.np ↗
                   </a>
                 </div>
@@ -86,24 +86,24 @@ export default function About() {
           </div>
 
           {/* Right Column: Key Highlights Grid (5 cols) */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 sm:gap-5">
             {highlights.map((item, idx) => (
               <Card
                 key={idx}
-                padding="md"
-                className="flex items-start gap-4 border border-[#ece8f5] bg-white hover:-translate-y-1 hover:shadow-md hover:border-[#c084fc] transition-all duration-250"
+                padding="none"
+                className="w-full flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 sm:gap-5 border border-[#ece8f5] bg-white hover:-translate-y-1 hover:shadow-md hover:border-[#c084fc] transition-all duration-250 p-6 rounded-2xl text-center sm:text-left"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#faf5ff] border border-[#e9d5ff] flex items-center justify-center text-xl flex-shrink-0">
+                <div className="w-13 h-13 rounded-2xl bg-[#faf5ff] border border-[#e9d5ff] flex items-center justify-center text-2xl shrink-0 shadow-2xs">
                   {item.icon}
                 </div>
                 <div className="min-w-0">
-                  <span className="text-[10px] font-bold tracking-widest uppercase text-[#9333ea] block">
+                  <span className="text-xs font-bold tracking-widest uppercase text-[#9333ea] block">
                     {item.label}
                   </span>
-                  <h4 className="text-sm font-bold text-[#111827] mt-0.5 leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold text-[#111827] mt-0.5 leading-snug">
                     {item.title}
                   </h4>
-                  <p className="text-xs text-[#6b7280] mt-0.5 leading-snug">
+                  <p className="text-xs sm:text-sm text-[#6b7280] mt-0.5 leading-snug">
                     {item.subtitle}
                   </p>
                 </div>

@@ -13,7 +13,7 @@ export default function Skills() {
           subtitle="Core programming languages, AI & security workflows, full-stack web technologies, and developer tooling."
         />
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="mt-10 w-full max-w-6xl xl:max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {skillGroups.map((group) => (
             <SkillCard key={group.category} group={group} />
           ))}

@@ -46,7 +46,7 @@ export default function SectionHeader({
       </div>
 
       {subtitle && (
-        <p className="max-w-2xl text-[#4b5563] text-sm sm:text-base md:text-lg leading-relaxed mt-0.5">
+        <p className="max-w-3xl text-[#4b5563] text-sm sm:text-base md:text-lg leading-relaxed mt-0.5">
           {subtitle}
         </p>
       )}

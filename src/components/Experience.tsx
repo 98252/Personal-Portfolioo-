@@ -14,39 +14,45 @@ export default function Experience() {
           subtitle="Hands-on software development experience building AI automation, user interfaces, and scalable backend modules."
         />
 
-        <div className="mt-12 max-w-4xl mx-auto flex flex-col gap-8">
+        <div className="mt-10 w-full max-w-5xl xl:max-w-6xl mx-auto flex flex-col items-center gap-6">
           {experiences.map((exp) => (
             <Card
               key={exp.id}
-              padding="lg"
-              className="border border-[#ece8f5] bg-white shadow-sm hover:shadow-md transition-all relative overflow-hidden"
+              padding="none"
+              className="w-full border border-[#ece8f5] bg-white shadow-sm hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 rounded-3xl overflow-hidden"
             >
-              {/* Left purple accent stripe */}
-              <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-[#9333ea] to-[#c084fc]" />
+              {/* Top Accent Gradient Bar */}
+              <div className="h-2.5 w-full bg-gradient-to-r from-[#9333ea] via-[#a855f7] to-[#c084fc]" />
 
-              <div className="pl-2">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-[#ece8f5]">
-                  <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3e8ff] text-[#7e22ce] text-xs font-semibold mb-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#9333ea]" />
-                      Internship
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#111827]">{exp.role}</h3>
-                    <p className="text-base font-semibold text-[#9333ea] mt-1">{exp.company}</p>
+              {/* Main Content with generous padding and center alignment */}
+              <div className="py-10 sm:py-12 px-8 sm:px-12 lg:px-16 space-y-8 text-center w-full">
+                <div className="flex flex-col items-center text-center gap-3 pb-6 border-b border-[#ece8f5]">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f3e8ff] text-[#7e22ce] text-xs sm:text-sm font-semibold border border-[#e9d5ff]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9333ea]" />
+                    Internship
                   </div>
-                  <div className="sm:text-right">
-                    <span className="inline-block px-3.5 py-1.5 rounded-xl bg-[#faf5ff] border border-[#e9d5ff] text-[#6b21a8] text-xs sm:text-sm font-semibold">
-                      {exp.period}
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] leading-tight">
+                    {exp.role}
+                  </h3>
+                  <p className="text-lg sm:text-xl font-semibold text-[#9333ea]">
+                    {exp.company}
+                  </p>
+                  <div className="mt-1">
+                    <span className="inline-block px-4 py-1.5 rounded-xl bg-[#faf5ff] border border-[#e9d5ff] text-[#6b21a8] text-sm font-semibold shadow-2xs">
+                      📅 {exp.period}
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-6">
-                  <h4 className="text-xs font-bold text-[#9ca3af] uppercase tracking-wider mb-3.5">Key Contributions & Responsibilities</h4>
-                  <ul className="space-y-3">
+                <div className="flex flex-col items-center">
+                  <h4 className="text-xs sm:text-sm font-bold text-[#7e22ce] uppercase tracking-wider mb-5 flex items-center justify-center gap-2 text-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9333ea]" />
+                    Key Contributions & Responsibilities
+                  </h4>
+                  <ul className="space-y-4 max-w-5xl mx-auto text-center">
                     {exp.points.map((pt, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[#4b5563] text-sm sm:text-base leading-relaxed">
-                        <span className="w-2 h-2 rounded-full bg-[#9333ea] mt-2 flex-shrink-0" />
+                      <li key={i} className="text-[#4b5563] text-base sm:text-lg leading-relaxed text-center">
+                        <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#9333ea] mr-3 align-middle shadow-2xs" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -54,10 +60,10 @@ export default function Experience() {
                 </div>
 
                 {exp.techStack && exp.techStack.length > 0 && (
-                  <div className="mt-6 pt-5 border-t border-[#ece8f5] flex flex-wrap items-center gap-2">
-                    <span className="text-xs text-[#9ca3af] font-semibold uppercase tracking-wider mr-2">Core Areas:</span>
+                  <div className="pt-6 border-t border-[#ece8f5] flex flex-wrap items-center justify-center gap-2.5">
+                    <span className="text-xs sm:text-sm text-[#9ca3af] font-bold uppercase tracking-wider mr-1">Core Areas:</span>
                     {exp.techStack.map((tech) => (
-                      <Badge key={tech} variant="neutral" size="sm">
+                      <Badge key={tech} variant="neutral" size="md" className="shadow-2xs">
                         {tech}
                       </Badge>
                     ))}

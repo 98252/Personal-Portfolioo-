@@ -27,7 +27,7 @@ export default function Card({
   onClick,
 }: CardProps) {
   const base =
-    'rounded-2xl border transition-all duration-300';
+    'w-full rounded-2xl border transition-all duration-300';
 
   const bgStyle = glass
     ? 'bg-white/70 backdrop-blur-md border-white/80'

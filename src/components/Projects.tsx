@@ -13,7 +13,7 @@ export default function Projects() {
           subtitle="Real-world AI systems and full-stack web applications developed with modern frameworks and robust architectures."
         />
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 max-w-7xl mx-auto">
+        <div className="mt-10 w-full max-w-6xl xl:max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

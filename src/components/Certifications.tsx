@@ -21,7 +21,7 @@ export default function Certifications() {
         />
 
         {/* ── 1. Featured Research Presentation (ICSDS-2025) ── */}
-        <div className="mt-12 max-w-5xl mx-auto">
+        <div className="mt-10 w-full max-w-6xl xl:max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-4">
             <span className="w-2.5 h-2.5 rounded-full bg-[#9333ea]" />
             <h3 className="text-lg font-bold text-[#111827]">Conference Research Presentation</h3>
@@ -30,8 +30,8 @@ export default function Certifications() {
           {researchPresentations.map((paper) => (
             <Card
               key={paper.id}
-              padding="lg"
-              className="border border-[#ece8f5] bg-white hover:-translate-y-1 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 cursor-pointer group"
+              padding="none"
+              className="w-full border border-[#ece8f5] bg-white hover:-translate-y-1 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 cursor-pointer group p-6 sm:p-8 rounded-2xl"
               onClick={() =>
                 setModalData({
                   title: paper.title,
@@ -90,7 +90,7 @@ export default function Certifications() {
         </div>
 
         {/* ── 2. Hackathons & Competitions ── */}
-        <div className="mt-14 max-w-5xl mx-auto">
+        <div className="mt-12 w-full max-w-6xl xl:max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <span className="w-2.5 h-2.5 rounded-full bg-[#9333ea]" />
             <h3 className="text-lg font-bold text-[#111827]">Hackathon Honors & Participation</h3>
@@ -100,8 +100,8 @@ export default function Certifications() {
             {achievements.map((ach) => (
               <Card
                 key={ach.id}
-                padding="lg"
-                className="border border-[#ece8f5] bg-white hover:-translate-y-1.5 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+                padding="none"
+                className="w-full border border-[#ece8f5] bg-white hover:-translate-y-1.5 hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 cursor-pointer group flex flex-col justify-between p-6 sm:p-7 rounded-2xl"
                 onClick={() =>
                   setModalData({
                     title: ach.title,
@@ -155,7 +155,7 @@ export default function Certifications() {
         </div>
 
         {/* ── 3. Verified Industry & Government Certifications ── */}
-        <div className="mt-14 max-w-5xl mx-auto">
+        <div className="mt-12 w-full max-w-6xl xl:max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <span className="w-2.5 h-2.5 rounded-full bg-[#9333ea]" />
             <h3 className="text-lg font-bold text-[#111827]">Industry & Government Certifications</h3>

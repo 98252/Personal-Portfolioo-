@@ -109,7 +109,7 @@ export default function Resume() {
       className='section-py bg-section-alt section-divider'
       aria-label='Resume & CV'
     >
-      <div className='container-fluid'>
+      <div className='container-fluid flex flex-col items-center'>
         <SectionHeader
           eyebrow='Curriculum Vitae'
           title='Resume &'
@@ -117,85 +117,89 @@ export default function Resume() {
           subtitle='Review my verified qualifications, academic achievements, and software engineering experience.'
         />
 
-        <div className='mt-12 max-w-3xl mx-auto'>
+        <div className='mt-10 w-full max-w-5xl xl:max-w-6xl mx-auto flex flex-col items-center'>
           <Card
-            padding='lg'
-            className='border border-border-subtle bg-white shadow-sm flex flex-col gap-6'
+            padding='none'
+            className='w-full border border-[#ece8f5] bg-white shadow-sm hover:shadow-xl hover:border-[#c084fc] transition-all duration-300 rounded-3xl overflow-hidden'
           >
-            {/* Card Header with Status Badge */}
-            <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-border-subtle'>
-              <div className='flex items-center gap-3.5'>
-                <div className='w-12 h-12 rounded-2xl bg-primary-faint border border-[#e9d5ff] flex items-center justify-center text-primary shrink-0 shadow-xs'>
+            {/* Top Accent Gradient Bar */}
+            <div className='h-2.5 w-full bg-gradient-to-r from-[#9333ea] via-[#a855f7] to-[#c084fc]' />
+
+            <div className='py-10 sm:py-12 px-8 sm:px-12 lg:px-16 space-y-8 text-center w-full'>
+              {/* Card Header with Status Badge */}
+              <div className='flex flex-col items-center text-center gap-3.5 pb-6 border-b border-[#ece8f5]'>
+                <div className='w-14 h-14 rounded-2xl bg-primary-faint border border-[#e9d5ff] flex items-center justify-center text-primary shrink-0 shadow-xs'>
                   <DocumentIcon />
                 </div>
                 <div>
-                  <span className='text-xs font-bold text-primary uppercase tracking-wider block'>
+                  <span className='text-xs sm:text-sm font-bold text-primary uppercase tracking-wider block'>
                     Candidate Snapshot
                   </span>
-                  <h3 className='text-xl sm:text-2xl font-bold text-[#111827] mt-0.5'>
+                  <h3 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-[#111827] mt-1 text-center'>
                     {personalInfo.name}
                   </h3>
                 </div>
+
+                <span className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs sm:text-sm font-bold shadow-2xs'>
+                  <span className='w-2 h-2 rounded-full bg-emerald-500 animate-pulse' />
+                  Available for Hire
+                </span>
               </div>
 
-              <span className='inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs sm:text-sm font-bold shadow-2xs self-start sm:self-center'>
-                <span className='w-2 h-2 rounded-full bg-emerald-500 animate-pulse' />
-                Available for Hire
-              </span>
-            </div>
+              {/* Recruiter Key Highlights */}
+              <div className='space-y-4 max-w-5xl mx-auto w-full'>
+                {recruiterHighlights.map((item, idx) => (
+                  <div key={idx} className='flex items-center justify-center gap-3 text-center'>
+                    <span className='w-6 h-6 rounded-lg bg-primary-subtle text-[#7e22ce] flex items-center justify-center shrink-0 shadow-2xs'>
+                      <CheckIcon />
+                    </span>
+                    <p className='text-base sm:text-lg text-center leading-relaxed'>
+                      <span className='font-bold text-[#111827]'>
+                        {item.label}:{" "}
+                      </span>
+                      <span className='text-[#4b5563]'>
+                        {item.value}
+                      </span>
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-            {/* Recruiter Key Highlights */}
-            <div className='space-y-3.5'>
-              {recruiterHighlights.map((item, idx) => (
-                <div key={idx} className='flex items-start gap-3'>
-                  <div className='w-5 h-5 rounded-md bg-primary-subtle text-[#7e22ce] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs'>
-                    <CheckIcon />
-                  </div>
-                  <div className='text-sm sm:text-base'>
-                    <span className='font-bold text-[#111827]'>
-                      {item.label}:{" "}
-                    </span>
-                    <span className='text-[#4b5563] leading-relaxed'>
-                      {item.value}
-                    </span>
-                  </div>
+              {/* Action Buttons for Recruiters - Prominently Centered */}
+              <div className='pt-8 border-t border-[#ece8f5] flex flex-col items-center justify-center gap-4 text-center w-full'>
+                <div className='flex flex-wrap items-center justify-center gap-4'>
+                  <Button
+                    as='a'
+                    href='/resume.pdf'
+                    download='Rahul_Kumar_Sah_Resume.pdf'
+                    variant='primary'
+                    size='lg'
+                    icon={<DownloadIcon />}
+                    iconPosition='left'
+                    className='shadow-md px-8 py-3.5 text-base sm:text-lg'
+                  >
+                    Download Resume (PDF)
+                  </Button>
+
+                  <Button
+                    as='a'
+                    href='/resume.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    variant='outline'
+                    size='lg'
+                    icon={<ExternalIcon />}
+                    iconPosition='right'
+                    className='px-8 py-3.5 text-base sm:text-lg'
+                  >
+                    View Full PDF
+                  </Button>
                 </div>
-              ))}
-            </div>
 
-            {/* Action Buttons for Recruiters */}
-            <div className='pt-5 border-t border-border-subtle flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4'>
-              <div className='flex flex-wrap items-center gap-3'>
-                <Button
-                  as='a'
-                  href='/resume.pdf'
-                  download='Rahul_Kumar_Sah_Resume.pdf'
-                  variant='primary'
-                  size='md'
-                  icon={<DownloadIcon />}
-                  iconPosition='left'
-                  className='shadow-sm'
-                >
-                  Download Resume (PDF)
-                </Button>
-
-                <Button
-                  as='a'
-                  href='/resume.pdf'
-                  target='_blank'
-                  rel='noreferrer'
-                  variant='outline'
-                  size='md'
-                  icon={<ExternalIcon />}
-                  iconPosition='right'
-                >
-                  View Full PDF
-                </Button>
+                <span className='inline-block text-xs sm:text-sm text-[#6b7280] font-medium text-center'>
+                  ATS-Formatted · Updated 2026
+                </span>
               </div>
-
-              <span className='text-xs text-muted font-medium'>
-                ATS-Formatted · Updated 2026
-              </span>
             </div>
           </Card>
         </div>
