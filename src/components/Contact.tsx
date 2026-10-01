@@ -41,7 +41,7 @@ export default function Contact() {
     subject: '',
     message: '',
   });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'needs_activation' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -50,80 +50,72 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('loading');
-    setErrorMessage('');
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+    const subject = formData.subject.trim();
 
-      const result = await res.json();
-
-      if (result.success) {
-        setStatus('success');
-      } else if (result.needsActivation) {
-        setStatus('needs_activation');
-      } else {
-        setStatus('error');
-        setErrorMessage(result.message || 'Unable to send message at this time.');
-      }
-    } catch {
-      // Fallback directly to FormSubmit
-      try {
-        const directRes = await fetch('https://formsubmit.co/ajax/sahr67568@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            ...formData,
-            _subject: `New Portfolio Message from ${formData.name}: ${formData.subject}`,
-            _template: 'table',
-            _captcha: 'false',
-          }),
-        });
-        const directData = await directRes.json();
-        if (directData.success === 'true' || directData.success === true) {
-          setStatus('success');
-          return;
-        }
-        if (typeof directData.message === 'string' && directData.message.includes('Activation')) {
-          setStatus('needs_activation');
-          return;
-        }
-      } catch {
-        // Fallback failed
-      }
+    // Client-side validation
+    if (!name) {
       setStatus('error');
-      setErrorMessage('Network error while transmitting message. You can send directly via email below.');
+      setErrorMessage('Please enter your name.');
+      return;
     }
-  };
 
-  const handleRetry = async () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      setStatus('error');
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    if (!message) {
+      setStatus('error');
+      setErrorMessage('Please enter your message.');
+      return;
+    }
+
     setStatus('loading');
     setErrorMessage('');
+
+    const formattedSubject = subject
+      ? `${subject} - Rahul Kumar Sah Portfolio`
+      : 'New Contact Message from Rahul Kumar Sah Portfolio';
+
     try {
-      const res = await fetch('/api/contact', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '118ae055-b97c-467e-9cbe-1c60c99d6031',
+          name,
+          email,
+          subject: formattedSubject,
+          message,
+          from_name: 'Rahul Kumar Sah Portfolio',
+        }),
       });
-      const result = await res.json();
-      if (result.success) {
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setStatus('success');
-      } else if (result.needsActivation) {
-        setStatus('needs_activation');
+        setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
+        console.error('Web3Forms submission failed:', data);
         setStatus('error');
-        setErrorMessage(result.message || 'Unable to send message.');
+        setErrorMessage(
+          data?.message || 'Unable to send your message. Please try again.'
+        );
       }
-    } catch {
+    } catch (err) {
+      console.error('Web3Forms network error:', err);
       setStatus('error');
-      setErrorMessage('Network error while transmitting message.');
+      setErrorMessage('Unable to send your message. Please try again.');
     }
   };
 
@@ -134,7 +126,7 @@ export default function Contact() {
   };
 
   const mailtoUrl = `mailto:sahr67568@gmail.com?subject=${encodeURIComponent(
-    formData.subject || 'Portfolio Inquiry'
+    formData.subject ? `${formData.subject} - Rahul Kumar Sah Portfolio` : 'Portfolio Inquiry'
   )}&body=${encodeURIComponent(
     `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
   )}`;
@@ -247,7 +239,7 @@ export default function Contact() {
                   <div>
                     <h4 className="text-xl font-bold text-[#111827] dark:text-white">Message Sent Successfully!</h4>
                     <p className="text-sm text-[#4b5563] dark:text-slate-300 mt-2 max-w-md leading-relaxed">
-                      Thank you for contacting, your message has been delivered to <strong className="text-slate-900 dark:text-white font-semibold">sahr67568@gmail.com</strong>. Rahul will reply to you shortly.
+                      Thank you for contacting me. I&apos;ll get back to you soon. Your message has been delivered to <strong className="text-slate-900 dark:text-white font-semibold">sahr67568@gmail.com</strong>.
                     </p>
                   </div>
                   <Button
@@ -262,65 +254,8 @@ export default function Contact() {
                 </div>
               )}
 
-              {/* ONE-TIME ACTIVATION STATE */}
-              {status === 'needs_activation' && (
-                <div className="p-6 sm:p-7 rounded-2xl bg-[#faf5ff] dark:bg-purple-950/20 border border-[#e9d5ff] dark:border-purple-800/50 text-left flex flex-col gap-4 animate-fade-up">
-                  <div className="flex items-center gap-3">
-                    <span className="w-10 h-10 rounded-xl bg-[#9333ea] text-white flex items-center justify-center text-xl shrink-0">
-                      📬
-                    </span>
-                    <div>
-                      <h4 className="text-base sm:text-lg font-bold text-[#111827] dark:text-white">
-                        One-Time Email Verification Required
-                      </h4>
-                      <p className="text-xs text-[#9333ea] dark:text-purple-300 font-semibold">Security protection for sahr67568@gmail.com</p>
-                    </div>
-                  </div>
-
-                  <div className="text-sm text-[#4b5563] dark:text-slate-300 space-y-2 leading-relaxed bg-white dark:bg-[#131c31] p-4 rounded-xl border border-[#ece8f5] dark:border-slate-800">
-                    <p className="font-medium text-[#111827] dark:text-white">To prevent spam, FormSubmit requires email verification once:</p>
-                    <ol className="list-decimal list-inside space-y-1 text-xs sm:text-sm text-[#4b5563] dark:text-slate-300">
-                      <li>Open your Gmail inbox at <strong>sahr67568@gmail.com</strong> (check Spam folder if needed).</li>
-                      <li>Open the email from <strong>FormSubmit</strong> titled <em>&quot;Action Required: Activate your FormSubmit form&quot;</em>.</li>
-                      <li>Click the green <strong>&quot;Activate Form&quot;</strong> button inside that email.</li>
-                    </ol>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-3 pt-1">
-                    <Button
-                      type="button"
-                      variant="primary"
-                      size="sm"
-                      onClick={handleRetry}
-                      className="px-5 py-2.5 rounded-xl !bg-[#9333ea] !text-white font-bold text-sm hover:!bg-[#7e22ce] shadow-sm transition-all flex items-center gap-2 cursor-pointer"
-                    >
-                      <span>I Clicked Activate in Gmail, Send Now</span>
-                      <span>→</span>
-                    </Button>
-
-                    <a
-                      href={mailtoUrl}
-                      className="px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-[#ece8f5] dark:border-slate-700 text-[#374151] dark:text-slate-200 hover:text-[#9333ea] dark:hover:text-purple-400 hover:border-[#c084fc] text-xs font-semibold transition-all inline-flex items-center gap-1.5"
-                    >
-                      <span>Or Send via Email App</span>
-                      <span>↗</span>
-                    </a>
-
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setStatus('idle')}
-                      className="text-xs text-[#6b7280] dark:text-slate-400 hover:text-[#111827] dark:hover:text-white"
-                    >
-                      Back to Form
-                    </Button>
-                  </div>
-                </div>
-              )}
-
               {/* IDLE / LOADING / ERROR FORM */}
-              {status !== 'success' && status !== 'needs_activation' && (
+              {status !== 'success' && (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   {status === 'error' && (
                     <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/70 text-red-700 dark:text-red-300 text-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -408,7 +343,7 @@ export default function Contact() {
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                           </svg>
-                          <span>Sending to sahr67568@gmail.com...</span>
+                          <span>Sending...</span>
                         </>
                       ) : (
                         <>
