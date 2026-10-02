@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/context/ThemeContext';
@@ -29,30 +30,42 @@ const themeScript = `
 `;
 
 export const metadata: Metadata = {
-  title: 'Rahul Kumar Sah | CS & Engineering Student · AI & Software Developer',
+  title: {
+    default: 'Rahul Kumar Sah — Software & AI Engineer',
+    template: '%s | Rahul Kumar Sah',
+  },
   description:
-    'Personal portfolio of Rahul Kumar Sah — Computer Science & Engineering Student and AI & Software Developer based in Greater Noida, India.',
+    'Personal portfolio of Rahul Kumar Sah — Software & AI Engineer specializing in full-stack development, intelligent systems, and scalable digital solutions.',
   keywords: [
     'Rahul Kumar Sah',
+    'Software Engineer',
+    'AI Engineer',
+    'Full Stack Developer',
     'Computer Science',
-    'AI Developer',
-    'Software Developer',
-    'Greater Noida',
     'Portfolio',
   ],
   authors: [{ name: 'Rahul Kumar Sah' }],
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
-    title: 'Rahul Kumar Sah | CS & Engineering Student · AI & Software Developer',
+    title: 'Rahul Kumar Sah — Software & AI Engineer',
     description:
-      'Personal portfolio of Rahul Kumar Sah — Computer Science & Engineering Student and AI & Software Developer based in Greater Noida, India.',
+      'Personal portfolio of Rahul Kumar Sah — Software & AI Engineer specializing in full-stack engineering, intelligent systems, and scalable solutions.',
     type: 'website',
     locale: 'en_IN',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rahul Kumar Sah | Portfolio',
+    title: 'Rahul Kumar Sah — Software & AI Engineer',
     description:
-      'CS & Engineering Student and AI & Software Developer based in Greater Noida, India.',
+      'Software & AI Engineer specializing in full-stack engineering and intelligent systems.',
   },
 };
 
@@ -64,7 +77,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <Script id="theme-script" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={inter.className}>
         <ThemeProvider>
