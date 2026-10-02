@@ -7,6 +7,7 @@ import ThemeToggle from "./ui/ThemeToggle";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
   // Detect scroll for glassmorphism effect
@@ -16,9 +17,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Detect active section
+  // Detect active section, including hero to avoid false active states on load
   useEffect(() => {
-    const ids = navLinks.map((l) => l.href.replace("#", ""));
+    const ids = ["hero", ...navLinks.map((l) => l.href.replace("#", ""))];
     const observers: IntersectionObserver[] = [];
 
     ids.forEach((id) => {
@@ -26,9 +27,11 @@ export default function Navbar() {
       if (!el) return;
       const obs = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
+          if (entry.isIntersecting) {
+            setActiveSection(id === "hero" ? "" : id);
+          }
         },
-        { rootMargin: "-30% 0px -60% 0px" },
+        { rootMargin: "-30% 0px -50% 0px" },
       );
       obs.observe(el);
       observers.push(obs);
@@ -37,21 +40,37 @@ export default function Navbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const handleNavClick = () => setMobileOpen(false);
+  const handleNavClick = () => {
+    setMobileOpen(false);
+    setMoreOpen(false);
+  };
 
-  // Primary navigation links (Contact is highlighted separately as CTA)
-  const primaryLinks = navLinks.filter((l) => l.href !== "#contact");
+  // Primary top links shown directly on desktop navbar
+  const primaryLinks = [
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+  ];
+
+  // Secondary links placed in sleek "More ▾" dropdown on desktop
+  const secondaryLinks = [
+    { label: "Certifications", href: "#certifications" },
+    { label: "Education", href: "#education" },
+    { label: "Resume", href: "#resume" },
+  ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-xl shadow-sm dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.6)] border-b border-slate-200/80 dark:border-slate-800/80"
-          : "bg-white/85 dark:bg-[#090d16]/85 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-800/60"
+          : "bg-white/90 dark:bg-[#090d16]/90 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-800/60"
       }`}
+      style={{ height: '72px' }}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+        <div className="flex items-center justify-between w-full h-full">
           {/* ── Brand Logo / Monogram ── */}
           <a
             href="#"
@@ -120,8 +139,8 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* ── Desktop Navigation Links (Un-congested, individual clean spacing) ── */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-3">
+          {/* ── Desktop Navigation Links (Clean, streamlined, never congested) ── */}
+          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2">
             <ul className="flex items-center gap-1 xl:gap-1.5">
               {primaryLinks.map((link) => {
                 const id = link.href.replace("#", "");
@@ -142,6 +161,66 @@ export default function Navbar() {
                 );
               })}
             </ul>
+
+            {/* "More ▾" Dropdown for secondary links */}
+            <div
+              className="relative"
+              onMouseEnter={() => setMoreOpen(true)}
+              onMouseLeave={() => setMoreOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setMoreOpen((p) => !p)}
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs xl:text-[13.5px] font-medium transition-all duration-150 whitespace-nowrap cursor-pointer ${
+                  secondaryLinks.some((l) => activeSection === l.href.replace("#", ""))
+                    ? "bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 font-semibold border border-purple-200/60 dark:border-purple-800/60"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                }`}
+                aria-expanded={moreOpen}
+              >
+                <span>More</span>
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    moreOpen ? "rotate-180" : ""
+                  }`}
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+
+              {/* Dropdown floating menu */}
+              {moreOpen && (
+                <div className="absolute right-0 mt-1 w-44 rounded-2xl bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-xl py-1.5 z-50 animate-fade-in">
+                  {secondaryLinks.map((link) => {
+                    const id = link.href.replace("#", "");
+                    const isActive = activeSection === id;
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        onClick={handleNavClick}
+                        className={`flex items-center justify-between px-3.5 py-2 text-xs xl:text-sm font-medium transition-colors ${
+                          isActive
+                            ? "text-purple-600 dark:text-purple-400 font-semibold bg-purple-50/80 dark:bg-purple-950/40"
+                            : "text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                        }`}
+                      >
+                        <span>{link.label}</span>
+                        {isActive && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400" />
+                        )}
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
 
             {/* Contact Action CTA Button & Theme Toggle */}
             <div className="flex items-center gap-2.5 pl-3 border-l border-slate-200 dark:border-slate-800">

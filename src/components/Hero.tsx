@@ -75,7 +75,8 @@ export default function Hero() {
   return (
     <section
       id='hero'
-      className='relative pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24 overflow-hidden'
+      className='relative pb-16 sm:pb-20 lg:pb-24 overflow-hidden'
+      style={{ paddingTop: '36px' }}
       aria-label='Hero section'
     >
       {/* ── Background decorations ── */}
@@ -115,10 +116,10 @@ export default function Hero() {
       <div className='container-fluid relative z-10'>
         <div className='w-full max-w-6xl xl:max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center'>
           {/* ────────── LEFT COLUMN — Text (7 cols) ────────── */}
-          <div className='lg:col-span-7 flex flex-col gap-5 sm:gap-6 order-2 lg:order-1'>
+          <div className='lg:col-span-7 flex flex-col gap-4 sm:gap-5 order-1 lg:order-1'>
             {/* Availability & Scholarship Pill */}
-            <div className='flex flex-wrap items-center gap-3 animate-fade-up'>
-              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-semibold'>
+            <div className='flex flex-wrap items-center gap-2.5 sm:gap-3 mb-1 animate-fade-up'>
+              <span className='inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-semibold'>
                 <span className='relative flex h-2.5 w-2.5'>
                   <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75' />
                   <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-600' />
@@ -126,7 +127,7 @@ export default function Hero() {
                 Available for Roles & Internships
               </span>
 
-              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-semibold'>
+              <span className='inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-semibold'>
                 <span className='w-2 h-2 rounded-full bg-slate-400 dark:bg-slate-500' />
                 EdCIL 100% Govt. Scholar
               </span>
@@ -134,20 +135,20 @@ export default function Hero() {
 
             {/* Main headline */}
             <div className='animate-fade-up' style={{ animationDelay: "80ms" }}>
-              <h1 className='font-extrabold text-slate-900 dark:text-white text-4xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight'>
-                Hi, I&apos;m{" "}
-                <span className='text-slate-900 dark:text-white'>
-                  {personalInfo.name}
+              <h1 className='font-extrabold text-slate-900 dark:text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight'>
+                <span>Hi, I&apos;m </span>
+                <span className='inline-block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-500 dark:from-purple-400 dark:via-indigo-300 dark:to-cyan-400 whitespace-nowrap sm:whitespace-normal'>
+                  Rahul Kumar Sah
                 </span>
               </h1>
-              <p className='mt-3.5 text-base sm:text-xl font-medium text-slate-600 dark:text-slate-400'>
-                {personalInfo.title} | {personalInfo.subtitle}
+              <p className='mt-2.5 text-base sm:text-lg lg:text-xl font-medium text-slate-600 dark:text-slate-400'>
+                {personalInfo.title} <span className="text-purple-500 dark:text-purple-400 font-bold">|</span> {personalInfo.subtitle}
               </p>
             </div>
 
             {/* Role Tags */}
             <div
-              className='flex flex-wrap gap-2.5 animate-fade-up'
+              className='flex flex-wrap gap-2 animate-fade-up'
               style={{ animationDelay: "160ms" }}
             >
               {[
@@ -158,7 +159,7 @@ export default function Hero() {
               ].map((item) => (
                 <span
                   key={item}
-                  className='flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white dark:bg-[#131c31] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs sm:text-sm md:text-base font-medium shadow-2xs'
+                  className='flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white dark:bg-[#131c31] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-medium shadow-2xs'
                 >
                   <span className='text-slate-400 dark:text-slate-500'>
                     <SparkleIcon />
@@ -170,7 +171,7 @@ export default function Hero() {
 
             {/* Bio summary */}
             <p
-              className='text-slate-600 dark:text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-3xl lg:max-w-4xl animate-fade-up'
+              className='text-slate-600 dark:text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl animate-fade-up'
               style={{ animationDelay: "240ms" }}
             >
               {personalInfo.summary}
@@ -178,7 +179,7 @@ export default function Hero() {
 
             {/* Location & Contact Meta */}
             <div
-              className='flex flex-wrap items-center gap-4 sm:gap-7 text-sm sm:text-base text-slate-600 dark:text-slate-400 animate-fade-up'
+              className='flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 animate-fade-up'
               style={{ animationDelay: "300ms" }}
             >
               <div className='flex items-center gap-2'>
@@ -249,7 +250,7 @@ export default function Hero() {
                   target='_blank'
                   rel='noreferrer'
                   aria-label='GitHub Profile'
-                  className='p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#131c31] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all'
+                  className='p-2.5 sm:p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#131c31] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all'
                 >
                   <GithubIcon />
                 </a>
@@ -258,7 +259,7 @@ export default function Hero() {
                   target='_blank'
                   rel='noreferrer'
                   aria-label='LinkedIn Profile'
-                  className='p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#131c31] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all'
+                  className='p-2.5 sm:p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#131c31] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all'
                 >
                   <LinkedinIcon />
                 </a>
@@ -268,7 +269,7 @@ export default function Hero() {
 
           {/* ────────── RIGHT COLUMN — Photo Card (5 cols) ────────── */}
           <div
-            className='lg:col-span-5 flex justify-center items-center order-1 lg:order-2 animate-fade-up'
+            className='lg:col-span-5 flex justify-center items-center order-2 lg:order-2 animate-fade-up'
             style={{ animationDelay: "200ms" }}
           >
             <div className='relative'>
@@ -279,7 +280,7 @@ export default function Hero() {
               />
 
               {/* Photo Card Container */}
-              <div className='relative w-[290px] sm:w-[350px] lg:w-[380px] xl:w-[420px] h-[380px] sm:h-[450px] lg:h-[490px] xl:h-[530px] rounded-[32px] overflow-hidden shadow-[0_20px_50px_-10px_rgb(0_0_0/0.15)] dark:shadow-[0_20px_50px_-10px_rgb(0_0_0/0.6)] border-4 sm:border-6 border-white dark:border-slate-800 bg-white dark:bg-slate-900'>
+              <div className='relative w-[270px] sm:w-[320px] lg:w-[350px] xl:w-[390px] h-[350px] sm:h-[410px] lg:h-[450px] xl:h-[490px] rounded-[28px] overflow-hidden shadow-[0_20px_50px_-10px_rgb(0_0_0/0.15)] dark:shadow-[0_20px_50px_-10px_rgb(0_0_0/0.6)] border-4 sm:border-6 border-white dark:border-slate-800 bg-white dark:bg-slate-900'>
                 <Image
                   src={personalInfo.profileImage}
                   alt={`${personalInfo.name} - Computer Science Student`}
