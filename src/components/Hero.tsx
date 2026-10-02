@@ -75,7 +75,7 @@ export default function Hero() {
   return (
     <section
       id='hero'
-      className='relative min-h-[82vh] flex flex-col justify-center overflow-hidden pt-28 sm:pt-32 pb-10 sm:pb-12'
+      className='relative pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24 overflow-hidden'
       aria-label='Hero section'
     >
       {/* ── Background decorations ── */}
@@ -209,17 +209,17 @@ export default function Hero() {
 
             {/* CTA buttons & Socials */}
             <div
-              className='flex flex-wrap items-center gap-3.5 pt-3 animate-fade-up'
+              className='flex flex-wrap items-center gap-3 pt-2 animate-fade-up'
               style={{ animationDelay: "360ms" }}
             >
               <Button
                 as='a'
                 href='#projects'
                 variant='primary'
-                size='lg'
+                size='md'
                 icon={<ArrowIcon />}
                 iconPosition='right'
-                className='px-7 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg'
+                className='px-6 py-3 text-sm sm:text-base font-semibold'
               >
                 View Projects
               </Button>
@@ -227,8 +227,8 @@ export default function Hero() {
                 as='a'
                 href='#resume'
                 variant='outline'
-                size='lg'
-                className='px-7 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg'
+                size='md'
+                className='px-6 py-3 text-sm sm:text-base font-semibold'
               >
                 View Resume
               </Button>
@@ -236,14 +236,14 @@ export default function Hero() {
                 as='a'
                 href='#contact'
                 variant='secondary'
-                size='lg'
-                className='px-7 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg'
+                size='md'
+                className='px-6 py-3 text-sm sm:text-base font-semibold'
               >
                 Contact Me
               </Button>
 
               {/* Social icons */}
-              <div className='flex items-center gap-2.5 sm:ml-2'>
+              <div className='flex items-center gap-2 sm:ml-2'>
                 <a
                   href={personalInfo.github}
                   target='_blank'
